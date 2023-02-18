@@ -25,7 +25,3 @@ logging:
       hibernate:
         stat: debug
         type: trace
-
-#springdoc:
-#  api-docs:
-#    path: /api-docs
