@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/mediator
+    username: pose
+    password: 3fhyPqr6Je9Bdo48xhp4PnDSUw8d2RBcz8KDwDibWJ
+  jpa:
+    hibernate:
+      #ddl-auto: update
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        generate_statistics: true
+        format_sql: true
+  data:
+    rest:
+      default-media-type: application/json
+  sql:
+    init:
+      platform: postgres
+
+logging:
+  level:
+    org:
+      hibernate:
+        stat: debug
+        type: trace
+
+#springdoc:
+#  api-docs:
+#    path: /api-docs
