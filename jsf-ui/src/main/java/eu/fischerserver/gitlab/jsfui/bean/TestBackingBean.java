@@ -6,6 +6,8 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
 import lombok.Getter;
 
 import java.io.Serializable;
@@ -25,8 +27,9 @@ public class TestBackingBean implements Serializable {
     }
 
     public void update() {
-        //noinspection UnnecessaryLocalVariable
-        String data = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("data");
-        text = data;
+        String dataString = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("data");
+        Jsonb jsonb = JsonbBuilder.create();
+        PMData data = jsonb.fromJson(dataString, PMData.class);
+        text = data.toString();
     }
 }

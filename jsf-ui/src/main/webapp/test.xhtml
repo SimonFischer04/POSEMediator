@@ -20,7 +20,7 @@
     <script type="text/javascript">
         const evtSource = new EventSource('#{request.contextPath}/sseServlet');
         evtSource.onmessage = event => {
-            console.log('update', event.data);
+            console.log('update: ', event.data);
             update([{name: 'data', value: event.data}]);
         };
     </script>

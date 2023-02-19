@@ -1,6 +1,8 @@
 package eu.fischerserver.gitlab.jsfui.communication;
 
 import jakarta.inject.Inject;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,16 +21,14 @@ public class SSEServlet extends HttpServlet {
         response.setContentType("text/event-stream");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-//        updateManager.subscribe(data -> {
-//            System.out.println("gkjdfgj");
-//            out.write("data: " + data + "\n\n");
-//            out.flush();
-//        });
+        // NOTE: no, directly subscribing here does not work, because then stream is closed
         try {
             //noinspection InfiniteLoopStatement
             while (true) {
-                String data = updateManager.waitForUpdate().toString(); // get the updated data to send
-                out.write("data: " + data + "\n\n");
+                PMData data = updateManager.waitForUpdate(); // get the updated data to send
+                Jsonb jsonb = JsonbBuilder.create();
+                String jsonString = jsonb.toJson(data);
+                out.write("data: " + jsonString + "\n\n");
                 out.flush();
                 //noinspection BusyWait
                 Thread.sleep(100); // wait for min 0.1 second before sending the next event
