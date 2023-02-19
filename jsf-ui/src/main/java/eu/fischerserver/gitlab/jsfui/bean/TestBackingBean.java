@@ -1,6 +1,7 @@
 package eu.fischerserver.gitlab.jsfui.bean;
 
-import eu.fischerserver.gitlab.jsfui.communication.SSEUpdateQueue;
+import eu.fischerserver.gitlab.jsfui.communication.PMData;
+import eu.fischerserver.gitlab.jsfui.communication.PMUpdateManager;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -8,7 +9,6 @@ import jakarta.inject.Named;
 import lombok.Getter;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 @Named
 @ViewScoped
@@ -17,11 +17,11 @@ public class TestBackingBean implements Serializable {
     private String text = "hallo";
 
     @Inject
-    SSEUpdateQueue updateQueue;
+    PMUpdateManager updateManager;
 
     public void test() {
         // Example to demonstrate "external" update f.e. by websocket. to test it open 2 tabs: one should also update the other
-        updateQueue.put(UUID.randomUUID().toString());
+        updateManager.update(new PMData((int) (Math.random() * Integer.MAX_VALUE), true));
     }
 
     public void update() {
