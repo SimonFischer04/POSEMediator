@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: simif
+  Date: 19/02/2023
+  Time: 15:39
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Test</title>
+    <script type="text/javascript">
+        const evtSource = new EventSource('#{request.contextPath}/sseServlet');
+        evtSource.onmessage = event => {
+            console.log('update', event.data);
+            update([{name: 'data', value: event.data}]);
+        };
+    </script>
+</h:head>
+
+<h:body>
+    <p:outputPanel id="content" layout="block">
+        <p:linkButton outcome="index" value="Back"/>
+        <h:form>
+            <p:remoteCommand name="update" update="content" action="#{testBackingBean.update()}"/>
+
+            <h:outputText value="#{testBackingBean.text}"/>
+            <p:commandButton value="Test" action="#{testBackingBean.test()}" ajax="true"/>
+        </h:form>
+    </p:outputPanel>
+</h:body>
+
+</html>
