@@ -2,5 +2,5 @@
 ...
 
 ## Notes:
-- http://localhost:8080/swagger-ui.html
-- http://localhost:8080/v3/api-docs
+- http://localhost:42000/swagger-ui.html
+- http://localhost:42000/v3/api-docs
