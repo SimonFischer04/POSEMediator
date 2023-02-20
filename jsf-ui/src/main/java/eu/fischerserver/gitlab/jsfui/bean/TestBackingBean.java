@@ -22,13 +22,16 @@ public class TestBackingBean implements Serializable {
     @Inject
     PMUpdateManager updateManager;
 
-//    @Inject
-//    WSClient client;
+    @Inject
+    WSClient client;
 
     public void test() {
         // Example to demonstrate "external" update f.e. by websocket. to test it open 2 tabs: one should also update the other
         updateManager.update(new PMData((int) (Math.random() * Integer.MAX_VALUE), true));
-//        client.send("hello", "abc");
+    }
+
+    public void test2(){
+        client.send("hello", "abc");
     }
 
     public void update() {
