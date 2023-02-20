@@ -5,25 +5,35 @@ Feel free to contribute or open an issue here: https://gitlab.fischerserver.eu/h
 
 \<TODO\>
 
-## possible IDEAs:
- - [ ] JSF UI:
+## planned:
+- [ ] JSF UI:
     - [ ] mute state UI mit animation fia on / off
-    - [ ] websocket
- - [ ] Spring Backend:
-    - [X] spring 3!
-    - [ ] websocket
-    - [ ] db mit credentials:
-        - [ ] db
-        - [-] yubikey unlock: NO! ->
-            - WebAuth:
-                - broken mit Spring Security 6 / Java 17 / Jakarta.y namespace...
-                - a nd really sinn von programm, weil direkt am 'backend' (spring) host und nd im UI authentifizieren eigentlich
-            - PIV:
-                - "no" documentation, nur .NET SDK
-                - javax.smartcardio.y a besonders mit Java17...
+    - [X] websocket
+- [ ] Spring Backend:
     - [ ] dbus interface
-    - [ ] mockdiscord
     - [ ] discord
-    - [ ] http interface
-        - [ ] interface
-        - [ ] esp trigger
+    - [X] http interface
+        - [X] interface
+    - [X] Mediator
+    - [X] mockdiscord
+    - [X] websocket
+    - [X] spring 3!
+    - [X] db mit credentials:
+        - [X] db
+- [X] lib thing... (some documentation)
+
+## possible future improvement Ideas:
+- [ ] better Logging System
+- [ ] ui: use constructor Inject (once told me field injection was not recommended, but now not anymore: maybe Jakarta EE 10 and switched back to 9 ???)
+- [ ] Unit Tests
+- [ ] db credential encryption
+    - [ ] encryption
+    - [ ] yubikey unlock: (©️ me 19.2.2023): currently NO! ->
+        - WebAuth:
+            - broken mit Spring Security 6 / Java 17 / Jakarta.y namespace...
+            - a nd really sinn von programm, weil direkt am 'backend' (spring) host und nd im UI authentifizieren eigentlich
+        - PIV:
+            - "no" documentation, nur .NET SDK
+            - javax.smartcardio.y a besonders mit Java17...
+- [ ] http interface
+    - [ ] esp trigger
