@@ -31,7 +31,10 @@ public class TestBackingBean implements Serializable {
     }
 
     public void test2(){
-        client.send("hello", "abc");
+        client.send("hello", new HelloMessage("abc"));
+    }
+
+    public record HelloMessage(String name) {
     }
 
     public void update() {
