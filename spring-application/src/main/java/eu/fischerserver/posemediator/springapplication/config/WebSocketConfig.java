@@ -9,14 +9,21 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+    private static final String SEND_PREFIX = "/topic";
+    private static final String RECEIVE_PREFIX = "/app";
+
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic");
-        config.setApplicationDestinationPrefixes("/app");
+        config.enableSimpleBroker(SEND_PREFIX);
+        config.setApplicationDestinationPrefixes(RECEIVE_PREFIX);
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/pm-websocket").withSockJS();
+    }
+
+    public static String getSendTopicPath(String topic) {
+        return "%s/%s".formatted(SEND_PREFIX, topic);
     }
 }

@@ -1,9 +1,9 @@
 package eu.fischerserver.gitlab.jsfui.communication;
 
+import eu.fischerserver.gitlab.jsfui.util.SerializationUtil;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.json.bind.Jsonb;
-import jakarta.json.bind.JsonbBuilder;
 import org.springframework.messaging.simp.stomp.*;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
@@ -26,8 +26,13 @@ public class WSClient {
     private static final String SEND_PREFIX = "/app";
     private static final String RECEIVE_PREFIX = "/topic";
 
+    private static final String PM_DATA_TOPIC = "pm-data";
+
     private static final Logger logger = Logger.getLogger(WSClient.class.getName());
     private Optional<StompSession> session = Optional.empty();
+
+    @Inject
+    PMUpdateManager updateManager;
 
     public WSClient() {
         init();
@@ -71,6 +76,20 @@ public class WSClient {
 
         var session = this.session.get();
 
+        session.subscribe(getReceivingTopicPath(PM_DATA_TOPIC), new StompFrameHandler() {
+            @Override
+            public Type getPayloadType(StompHeaders headers) {
+                return byte[].class;
+            }
+
+            @Override
+            public void handleFrame(StompHeaders headers, Object payload) {
+                PMData data = SerializationUtil.parsePMData((byte[]) payload);
+                updateManager.sendUpdate(data);
+            }
+        });
+
+        // Simple Demo / debugging
         session.subscribe(getReceivingTopicPath("greetings"), new StompFrameHandler() {
             public Type getPayloadType(StompHeaders stompHeaders) {
                 return byte[].class;
@@ -87,9 +106,7 @@ public class WSClient {
             System.err.println("SEND called before websocket connected!");
             return;
         }
-        Jsonb jsonb = JsonbBuilder.create();
-        String jsonString = jsonb.toJson(data);
-        session.get().send("%s/%s".formatted(SEND_PREFIX, topic), jsonString.getBytes());
+        session.get().send("%s/%s".formatted(SEND_PREFIX, topic), SerializationUtil.toPayload(data));
     }
 
     public void disconnect() {
@@ -101,7 +118,7 @@ public class WSClient {
         session.get().disconnect();
     }
 
-    private String getReceivingTopicPath(@SuppressWarnings("SameParameterValue") String topic) {
+    private static String getReceivingTopicPath(@SuppressWarnings("SameParameterValue") String topic) {
         return "%s/%s".formatted(RECEIVE_PREFIX, topic);
     }
 }

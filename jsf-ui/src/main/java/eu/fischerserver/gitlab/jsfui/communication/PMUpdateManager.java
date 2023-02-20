@@ -29,7 +29,7 @@ public class PMUpdateManager {
         return dataAtomicReference.get().get();
     }
 
-    public void update(PMData data) {
+    public void sendUpdate(PMData data) {
         updateServer.offer(data, (subscriber, videoFrame) -> {
             subscriber.onError(new RuntimeException("Update#" + data.id() + " dropped because of backpressure"));
             return true;
