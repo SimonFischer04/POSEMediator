@@ -3,10 +3,8 @@ package eu.fischerserver.posemediator.springapplication.controller;
 import eu.fischerserver.posemediator.springapplication.model.Credential;
 import eu.fischerserver.posemediator.springapplication.service.CredentialService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -15,6 +13,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class DebugController {
     private final CredentialService credentialService;
+    private final WSDebugController wsDebugController;
+    private final SimpMessagingTemplate messagingTemplate;
 
     @GetMapping
     public Test debug() {
@@ -31,6 +31,16 @@ public class DebugController {
     public Credential test3() {
         var cred = credentialService.findByKey("test");
         return credentialService.save(new Credential(cred.id(), cred.key(), UUID.randomUUID().toString()));
+    }
+
+    @PostMapping("test4")
+    public void test4() {
+//        try {
+//            wsDebugController.greeting(new WSDebugController.HelloMessage("xyz"));
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+        messagingTemplate.convertAndSend("/topic/greetings", "triggered by http: " + new WSDebugController.HelloMessage(UUID.randomUUID().toString()));
     }
 
     public record Test(String a) {

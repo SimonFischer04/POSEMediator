@@ -17,6 +17,6 @@ public class WSDebugController {
     private record Greeting(String content) {
     }
 
-    private record HelloMessage(String name) {
+    public record HelloMessage(String name) {
     }
 }
