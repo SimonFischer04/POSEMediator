@@ -15,13 +15,17 @@ import java.io.Serializable;
 @ViewScoped
 public class OverlayBackingBean implements Serializable {
     @Getter
-    private PMData pmData;
+    private PMData pmData = new PMData(-1, true);
 
     public void update() {
         //noinspection UnnecessaryLocalVariable
         PMData data = SerializationUtil.parsePMData(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("data"));
 
         this.pmData = data;
+    }
+
+    public void toggleMute() {
+
     }
 }
 
