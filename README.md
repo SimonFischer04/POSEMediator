@@ -7,10 +7,12 @@ Feel free to contribute or open an issue here: https://gitlab.fischerserver.eu/h
 
 ## planned:
 - [ ] JSF UI:
-    - [ ] mute state UI mit animation fia on / off
+    - [ ] mute state overlay
+        - [X] mute state UI mit animation fia on / off
+        - [ ] load inital state from server
+        - [ ] toggle mute State in UI
     - [X] websocket
 - [ ] Spring Backend:
-    - [ ] dbus interface
     - [ ] discord
     - [X] http interface
         - [X] interface
@@ -23,6 +25,7 @@ Feel free to contribute or open an issue here: https://gitlab.fischerserver.eu/h
 - [X] lib thing... (some documentation)
 
 ## possible future improvement Ideas:
+- [ ] dbus interface
 - [ ] better Logging System
 - [ ] ui: use constructor Inject (once told me field injection was not recommended, but now not anymore: maybe Jakarta EE 10 and switched back to 9 ???)
 - [ ] Unit Tests
