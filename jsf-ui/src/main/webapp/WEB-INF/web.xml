@@ -15,7 +15,7 @@
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
-    <session-config>
-        <session-timeout>30</session-timeout> <!-- set session timeout to 30 minutes -->
-    </session-config>
+<!--    <session-config>-->
+<!--        <session-timeout>30</session-timeout> &lt;!&ndash; set session timeout to 30 minutes &ndash;&gt;-->
+<!--    </session-config>-->
 </web-app>

@@ -24,6 +24,9 @@
             update([{name: 'data', value: event.data}]);
         };
     </script>
+    <f:facet name="styles">
+        <h:outputStylesheet library="css" name="overlay.css"/>
+    </f:facet>
 </h:head>
 
 <h:body>
@@ -33,8 +36,40 @@
             <p:remoteCommand name="update" update="content" action="#{overlayBackingBean.update()}"/>
             <h:outputText value="#{overlayBackingBean.pmData}"/>
             <!--            <p:commandButton value="Test" action="#{testBackingBean.test()}" ajax="true"/>-->
+
+            <div style="width: 100px; height: 100px;">
+                <div class="strike-through-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="100" height="100">
+                        <title>microphone</title>
+                        <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"/>
+                    </svg>
+                    <div class="strike-through"></div>
+                    <div class="strike-through-undo"></div>
+                </div>
+            </div>
+            <button id="animate-button" type="button">Strike Through</button>
+            <button id="undo-button" type="button">Undo Strike Through</button>
         </h:form>
     </p:outputPanel>
+    <script type="text/javascript">
+        const animateButton = document.getElementById('animate-button');
+        const undoButton = document.getElementById('undo-button');
+        const strikeThrough = document.querySelector('.strike-through');
+        const strikeThroughUndo = document.querySelector('.strike-through-undo');
+
+        animateButton.addEventListener('click', () => {
+            strikeThrough.classList.add('strike');
+        });
+
+        undoButton.addEventListener('click', () => {
+            strikeThrough.classList.remove('strike');
+            strikeThroughUndo.classList.add('undo');
+        });
+
+        strikeThroughUndo.addEventListener('animationend', () => {
+            strikeThroughUndo.classList.remove('undo');
+        });
+    </script>
 </h:body>
 
 </html>

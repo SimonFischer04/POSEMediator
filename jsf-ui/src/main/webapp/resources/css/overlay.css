@@ -1,0 +1,53 @@
+.strike-through-image {
+    position: relative;
+}
+
+.strike-through {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: black;
+    transform: rotate(-45deg);
+    transform-origin: bottom left;
+    animation: none;
+}
+
+.strike-through.strike {
+    animation: strike 1s linear forwards;
+}
+
+.strike-through-undo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: black;
+    transform: rotate(-45deg);
+    transform-origin: bottom left;
+    animation: none;
+}
+
+.strike-through-undo.undo {
+    animation: undo 1s linear forwards;
+}
+
+@keyframes strike {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 141%;
+    }
+}
+
+@keyframes undo {
+    0% {
+        width: 141%;
+    }
+    100% {
+        width: 0%;
+    }
+}
