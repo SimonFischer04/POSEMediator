@@ -1,4 +1,4 @@
-package eu.fischerserver.gitlab.jsfui;
+package eu.fischerserver.gitlab.pm.jsfui.servlet;
 
 import java.io.*;
 

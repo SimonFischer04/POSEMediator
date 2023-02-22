@@ -1,9 +1,9 @@
-package eu.fischerserver.gitlab.jsfui.bean;
+package eu.fischerserver.gitlab.pm.jsfui.bean;
 
-import eu.fischerserver.gitlab.jsfui.communication.PMData;
-import eu.fischerserver.gitlab.jsfui.communication.PMUpdateManager;
-import eu.fischerserver.gitlab.jsfui.communication.WSClient;
-import eu.fischerserver.gitlab.jsfui.util.SerializationUtil;
+import eu.fischerserver.gitlab.pm.jsfui.model.PMData;
+import eu.fischerserver.gitlab.pm.jsfui.main.include.update.PMUpdateManager;
+import eu.fischerserver.gitlab.pm.jsfui.service.WSClient;
+import eu.fischerserver.gitlab.pm.jsfui.util.SerializationUtil;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -29,8 +29,8 @@ public class TestBackingBean implements Serializable {
         updateManager.sendUpdate(new PMData((int) (Math.random() * Integer.MAX_VALUE), true));
     }
 
-    public void test2(){
-        client.send("hello", new HelloMessage("abc"));
+    public void test2() {
+        client.sendHello(new TestBackingBean.HelloMessage("abc"));
     }
 
     public record HelloMessage(String name) {

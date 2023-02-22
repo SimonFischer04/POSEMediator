@@ -10,7 +10,7 @@ Feel free to contribute or open an issue here: https://gitlab.fischerserver.eu/h
     - [ ] mute state overlay
         - [X] mute state UI mit animation fia on / off
         - [ ] load inital state from server
-        - [ ] toggle mute State in UI
+        - [X] toggle mute State in UI
     - [X] websocket
 - [ ] Spring Backend:
     - [ ] discord

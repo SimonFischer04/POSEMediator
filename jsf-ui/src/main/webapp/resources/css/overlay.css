@@ -1,8 +1,18 @@
+#image-container {
+    width: 90%;
+    max-width: 200px;
+    height: 80%;
+    max-height: 200px;
+}
+
+/*
+    Animation stuff
+ */
 .strike-through-image {
     position: relative;
 }
 
-.strike-through, .strike-through-undo{
+.strike-through, .strike-through-undo {
     position: absolute;
     bottom: 0;
     left: 0;

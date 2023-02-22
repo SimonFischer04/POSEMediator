@@ -1,12 +1,12 @@
-package eu.fischerserver.gitlab.jsfui.bean;
+package eu.fischerserver.gitlab.pm.jsfui.bean;
 
-import eu.fischerserver.gitlab.jsfui.communication.PMData;
-import eu.fischerserver.gitlab.jsfui.util.SerializationUtil;
+import eu.fischerserver.gitlab.pm.jsfui.model.PMData;
+import eu.fischerserver.gitlab.pm.jsfui.main.Mediator;
+import eu.fischerserver.gitlab.pm.jsfui.util.SerializationUtil;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.json.bind.Jsonb;
-import jakarta.json.bind.JsonbBuilder;
 import lombok.Getter;
 
 import java.io.Serializable;
@@ -17,6 +17,9 @@ public class OverlayBackingBean implements Serializable {
     @Getter
     private PMData pmData = new PMData(-1, true);
 
+    @Inject
+    Mediator mediator;
+
     public void update() {
         //noinspection UnnecessaryLocalVariable
         PMData data = SerializationUtil.parsePMData(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("data"));
@@ -25,7 +28,7 @@ public class OverlayBackingBean implements Serializable {
     }
 
     public void toggleMute() {
-
+        mediator.onToggleMuteEvent();
     }
 }
 

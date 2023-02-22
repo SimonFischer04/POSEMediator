@@ -1,5 +1,6 @@
-package eu.fischerserver.gitlab.jsfui.communication;
+package eu.fischerserver.gitlab.pm.jsfui.main.include.update;
 
+import eu.fischerserver.gitlab.pm.jsfui.model.PMData;
 import lombok.RequiredArgsConstructor;
 
 import java.util.concurrent.Flow;

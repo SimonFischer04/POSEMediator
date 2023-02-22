@@ -1,5 +1,7 @@
-package eu.fischerserver.gitlab.jsfui.communication;
+package eu.fischerserver.gitlab.pm.jsfui.servlet;
 
+import eu.fischerserver.gitlab.pm.jsfui.main.include.update.PMUpdateManager;
+import eu.fischerserver.gitlab.pm.jsfui.model.PMData;
 import jakarta.inject.Inject;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;

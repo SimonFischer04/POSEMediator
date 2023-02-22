@@ -15,7 +15,7 @@ public class MediatorImpl implements Mediator {
     private final WSService wsService;
 
     @Override
-    public void onDiscordChange(PMData pmData) {
+    public void onPMDataChange(PMData pmData) {
         updatePMData(pmData);
     }
 

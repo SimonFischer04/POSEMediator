@@ -1,6 +1,9 @@
-package eu.fischerserver.gitlab.jsfui.communication;
+package eu.fischerserver.gitlab.pm.jsfui.service;
 
-import eu.fischerserver.gitlab.jsfui.util.SerializationUtil;
+import eu.fischerserver.gitlab.pm.jsfui.bean.TestBackingBean;
+import eu.fischerserver.gitlab.pm.jsfui.main.Mediator;
+import eu.fischerserver.gitlab.pm.jsfui.model.PMData;
+import eu.fischerserver.gitlab.pm.jsfui.util.SerializationUtil;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -32,7 +35,7 @@ public class WSClient {
     private Optional<StompSession> session = Optional.empty();
 
     @Inject
-    PMUpdateManager updateManager;
+    Mediator mediator;
 
     public WSClient() {
         init();
@@ -85,7 +88,7 @@ public class WSClient {
             @Override
             public void handleFrame(StompHeaders headers, Object payload) {
                 PMData data = SerializationUtil.parsePMData((byte[]) payload);
-                updateManager.sendUpdate(data);
+                mediator.onPMDataChange(data);
             }
         });
 
@@ -101,7 +104,11 @@ public class WSClient {
         });
     }
 
-    public void send(String topic, Object data) {
+    public void sendHello(TestBackingBean.HelloMessage message) {
+        send("hello", message);
+    }
+
+    private void send(String topic, Object data) {
         if (session.isEmpty()) {
             System.err.println("SEND called before websocket connected!");
             return;
