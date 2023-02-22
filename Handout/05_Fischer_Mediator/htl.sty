@@ -1,0 +1,231 @@
+\def\HTLheadingextra{.tex~}
+% \def\HTLheadingextra{~}
+%-----------------------------------------------------------------------
+% Copyright ©
+% 2022 - 2023 Simon Fischer, Michael Hinterdorfer
+% LICENSE: http://www.wtfpl.net/
+%-----------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{htl}
+
+%---Packages-------------------------------------------------------------
+\usepackage[utf8]{inputenc} % allow unicode letters
+\usepackage[T1]{fontenc} % render unicode letters
+\usepackage[ngerman, american]{babel} % capitalization, line breaks
+\usepackage{hyperref} % hrefs, links, colored links
+\usepackage{graphicx} % figure environment
+\usepackage{float} % make environments float to next page top when too large for current page [H]
+\usepackage{fancyhdr} % more options to define headers and footers
+\usepackage{lastpage} % make possible to refer to last page number (e.g. footer or header)
+\usepackage[
+    style=ieee, % set style of bibliography to ieee
+    citestyle=ieee, % set style of cite to ieee
+    sortlocale=auto, % sort bibliography
+    autocite=inline, % cite inline when autociting
+    hyperref=true, % refer from pages to bib
+    backref=true % refer from bibliography to pages
+]{biblatex} % bibliography
+\usepackage{minted} % source code highlighting
+\usepackage{csquotes} % recommended by biblatex
+\usepackage[acronym,toc,noredefwarn]{glossaries} % glossaries and acronyms
+\usepackage{import} % better import: https://www.overleaf.com/learn/latex/Management_in_a_large_project#Using_the_import_package
+\usepackage{ltablex} % the better version of tabularx that also works with multiple pages
+\usepackage{outlines} % better enumerations
+\usepackage{geometry} % setup page size
+\usepackage{xargs} % Use more than one optional parameter in a new commands
+\usepackage[pdftex,dvipsnames]{xcolor}  % Coloured text etc.
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} % todo side-notes
+\usepackage{environ} %https://en.wikibooks.org/wiki/LaTeX/Macros # Environment contents as a macro argument
+\usepackage{silence} % hide warnings
+\usepackage{soul} % \st{Strike through this text}
+\usepackage{morewrites} % see https://texfaq.org/FAQ-noroom
+
+% Package options
+%  More Info: https://tex.stackexchange.com/questions/417704/key-value-syntax-in-package-options -> pgfkeys
+\RequirePackage{pgfopts}
+\pgfkeys{
+  /htlsetup/.cd,
+  title/.store in = \htlsetup@title,
+  subtitle/.store in = \htlsetup@subtitle,
+  description/.store in = \htlsetup@description,
+  author/.store in = \htlsetup@author,
+  date/.store in = \htlsetup@date,
+  date = \today,  % date/.initial = 1337, -> initial broke for reasons...
+  school/.store in = \htlsetup@school,
+  school = HTL Perg,
+  subject/.store in = \htlsetup@subject,
+  counterdepth/.store in = \htlsetup@counterdepth,
+  counterdepth = 5,
+  usemath/.store in = \htlsetup@usemath,
+  .unknown/.code = \PackageWarning{htl}{Unknown option `\pgfkeyscurrentname'}
+}
+\ProcessPgfOptions{/htlsetup}
+
+% Optional Packages
+\ifx\htlsetup@usemath\undefined
+\else
+    \usepackage{amsmath} % math modes, math functions
+    \usepackage{amssymb} % math symbols, euler, sigma, tau, pi usw.
+    \usepackage{pgfplots} % plots with tikz usw. to show geogebra plots
+    \usepackage{mathrsfs} % required to show geogebra plots
+\fi
+
+% ---------------------------------------------------------------------------------
+% -------------------------- Setup ------------------------------------------------
+% ---------------------------------------------------------------------------------
+\title{\htlsetup@title - \htlsetup@subtitle}
+\author{\htlsetup@author}
+\date{\htlsetup@date}
+
+% Set depth of tableofcontents. Note that part is -1 level !
+\setcounter{secnumdepth}{\htlsetup@counterdepth} 
+\setcounter{tocdepth}{\htlsetup@counterdepth}
+
+% Change Title of listoflistings
+\renewcommand\listoflistingscaption{List of source codes}
+
+\renewcommand{\headrulewidth}{0.5pt} % make head body line 0.5pt thick
+\renewcommand{\footrulewidth}{0.5pt} % make body foot line 0.5pt thick
+\renewcommand{\arraystretch}{1.2} % spacing inside tables
+
+% more colours
+\definecolor{LightGray}{gray}{0.95} % used in cinputminted
+
+\geometry{
+    a4paper,
+    top=20mm,
+    bottom=20mm,
+    left=20mm,
+    right=20mm,
+    footskip=\dimexpr\headsep+\ht\strutbox\relax,
+    headheight=17mm,
+    bmargin = \dimexpr17mm+2\ht\strutbox\relax,
+}
+
+% \WarningFilter{hyperref}{Token not allowed in a PDF string (Unicode): removing `\voidb@x' on input line 91.} -> broke
+\WarningsOff
+\hypersetup{
+    %hidelinks, % disable link coloring in the doc
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=cyan,
+    pdftitle=\htlsetup@description,
+    pdfauthor=\htlsetup@author,
+    pdfsubject=\htlsetup@subject
+}
+\WarningsOn
+
+%---head-foot----
+\fancypagestyle{plain}{ % overide plain page style as fancy -> otherwise header/footer broken on references page
+    \fancyhf{} % reset fancy-heads
+    \fancyhead[L]{
+        \parbox[H]{0.27\textwidth}{
+            \begin{flushleft}
+                \htlsetup@school/\htlsetup@subject
+            \end{flushleft}
+        }
+    }
+    \fancyhead[C]{
+        \hypersetup{hidelinks} \hyperref[ref:contents]{Chapter \thechapter}
+    }
+    \fancyhead[R]{
+        \parbox[H]{0.27\textwidth}{
+            \begin{flushright}
+                \hypersetup{hidelinks} \hyperref[ref:cover]{\htlsetup@title~-~\htlsetup@subtitle\HTLheadingextra}
+            \end{flushright}
+        }
+    }
+    \fancyfoot[L]{
+        \parbox[H]{0.35\textwidth}{
+            \begin{flushleft}
+                \htlsetup@author
+            \end{flushleft}
+        }
+    }
+    \fancyfoot[C]{
+        \htlsetup@date
+    }
+    \fancyfoot[R]{
+        \parbox[H]{0.35\textwidth}{
+            \begin{flushright}
+                \hypersetup{hidelinks} Page \thepage~of \pageref{LastPage}
+            \end{flushright}
+        }
+    }
+}
+\pagestyle{plain} % page style fancy for all pages -> because plain is overridden
+
+%---end head foot----
+
+\addbibresource{meta/references.bib} % specify bibliography resource
+\makeglossaries % enable glossaries and acronyms
+\import{./meta}{glossaries.tex}
+\import{./meta}{acronyms.tex}
+
+% TODOs---------------------------
+% https://tex.stackexchange.com/questions/9796/how-to-add-todo-notes
+\WarningFilter{latex}{Marginpar on page}
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+\newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
+
+% ---------------------------------------------------------------------------------
+% -------------------------- Commands ---------------------------------------------
+% ---------------------------------------------------------------------------------
+% tabular colum types
+\newcolumntype{L}{>{\raggedright\arraybackslash}X} % tabular-X, but left aligned
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X} % tabular-X, but right aligned
+\newcolumntype{C}{>{\centering\arraybackslash}X} % tabular-X, but centered
+
+% columns with half size:
+%  https://tex.stackexchange.com/questions/84400/table-layout-with-tabularx-column-widths-502525
+\newcolumntype{B}{C}
+\newcolumntype{S}{>{\hsize=.5\hsize}C}
+% and: https://tex.stackexchange.com/questions/207481/valid-names-for-new-column-type
+\newcolumntype{\BL}{L}
+\newcolumntype{\SL}{>{\hsize=.5\hsize}L}
+
+% Add listings to TOC: https://tex.stackexchange.com/questions/99628/minted-list-of-listings-and-toc-conflict
+\renewcommand{\listoflistings}{%
+  % \cleardoublepage
+  \addcontentsline{toc}{chapter}{\listoflistingscaption}%
+  \listof{listing}{\listoflistingscaption}%
+}
+
+% predefined sections
+\import{./meta}{cover.tex}
+\newcommand{\HTLTOC}{
+    {
+        \hypersetup{hidelinks}
+        \tableofcontents
+        \label{ref:contents}
+        \newpage
+    }
+}
+\newcommand{\HTLGlossaryReferences}{
+    \newpage
+    \printglossary[type=\acronymtype,style=long]
+    \printglossary[title=Besondere Begriffe,toctitle=Begriffsliste,style=long]
+    % \printglossaries
+    \newpage
+    
+    \printbibliography
+    \listoffigures
+    \listoftables
+    \listoflistings
+    
+    \newpage
+    \listoftodos[Notes]
+}
+\import{./meta}{utils.tex}
+
+% ---------------------------------------------------------------------------------
+% -------------------------- Extension Ideas---------------------------------------
+% ---------------------------------------------------------------------------------
+%  https://tex.stackexchange.com/questions/207481/valid-names-for-new-column-type
+%  https://www.namsu.de/Extra/pakete/Tabulary.html? _> commands self defined
+%  https://www.namsu.de/Extra/pakete/Booktabs.html, https://tex.stackexchange.com/questions/163061/help-with-a-booktabs-table
+%  https://tex.stackexchange.com/questions/633868/how-to-prevent-word-wrap-and-new-lines-in-table-cells
+%  https://www.tablesgenerator.com/

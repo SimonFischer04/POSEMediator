@@ -1,0 +1,45 @@
+\newcommand{\HTLTitlepage}{
+    \label{ref:cover}
+    \thispagestyle{empty}
+    
+    %deckblatt start
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.33\textwidth]{meta/htl_perg.png}
+        \label{fig:logo-deckblatt}
+    \end{figure}
+    
+    \begin{center}
+    	\Large{Abteilung: Höhere Lehranstalt für Informatik}
+    \end{center}
+    
+    \begin{center}
+        \textbf{\LARGE{\htlsetup@title}}
+    \end{center}
+    
+    \begin{center}
+        \textbf{\htlsetup@subtitle} 
+    \end{center}
+    
+    \begin{table}[H]
+        \setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+        \begin{tabularx}{\textwidth}{lX}
+            \textbf{Thema:} & \htlsetup@description \\
+            \\
+            \\
+            \textbf{Fach:} & \htlsetup@subject \\
+            \\
+            \\
+            \textbf{Erstelldatum:} & \htlsetup@date \\
+            \\
+            \\
+            \textbf{Letzte PDF-Erstellung} & \today \\
+            \\
+            \\
+            \textbf{Ersteller:} & \htlsetup@author \\
+        \end{tabularx}
+        \label{table:deckblatt-stammdaten}
+    \end{table}
+
+    \newpage
+}

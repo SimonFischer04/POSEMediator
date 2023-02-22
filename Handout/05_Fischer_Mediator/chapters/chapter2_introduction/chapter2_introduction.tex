@@ -1,0 +1,46 @@
+% Einleitung und evtl. Erklärung von zusätzlichen Themen die für das Verständnis des Design-Patterns sinnvoll, nützlich oder notwendig sind
+
+% Behavioral ...
+\chapter{Einleitung}
+Um die, bereits in der \hyperref[ref:motivation]{Motivation} erwähnten, vielen Abhängigkeiten zwischen den einzelnen Klassen aufzulösen und somit \gls{loose_coupling_g} herzustellen, wird ein Mediator eingesetzt. Wie auch in der Grafik \ref{fig:noMediatorVsMediator} veranschaulicht, interagieren Objekte dann nicht mehr direkt miteinander, sondern immer über den Mediator. Dies führt sowohl zu einigen Vor- als aber auch Nachteilen (siehe: \hyperref[ref:vorteileNachteile]{Vor- und Nachteile vom Mediator}). Weiters gehört der Mediator zur Gruppe der \gls{behavioralpattern_g}.
+\cfigure{0.95}{chapters/chapter2_introduction/assets/NoMediatorVsMediator}{Vergleich kein Mediator / Mediator - Extremfall}{noMediatorVsMediator}
+\autocite[vgl.][S. 273ff]{gangoffour_book}
+%
+\section{zusätzlichen Themen}
+Um das Mediator Design-Pattern besser verstehen zu können, benötigt es auch das Verständnis folgender Konzepte:
+\subsection{lose Kopplung}\label{ref:looseCoupling}
+Bei Kopplung im Software-Bereich unterscheidet man meist zwischen starker und loser Kopplung. Als Kopplung wird der Grad der Ab- /bzw. Unabhängigkeit zwischen zwei Komponenten beschrieben. Ziel ist es, möglichst unabhängige Software-Komponenten und somit modulare Software zu erstellen. Die Änderung einer Komponente sollte möglichst keine Auswirkung auf andere haben. Dies hat unter anderem folgende Vorteile: 
+\begin{outline}\label{ref:prosLoseKopplung}
+    \1 bessere Wartbarkeit: nicht jede kleine Änderung benötigt Änderung am \enquote{gesammten} System. z.B. Datenquelle kann einfach an einer \textbf{einzigen} Stelle ausgetauscht werden und alle funktioniert weiterhin
+    \1 Wiederverwendbarkeit: einzelne Komponenten können in neuen Projekten verwendet werden ohne das \enquote{komplette} alte Programm kopieren zu müssen
+    \1 Testbarkeit: Während Unit-Test können einzelne Komponenten (oft z.B. Datenbank) gegen emulierte Varianten ausgetauscht werden.
+    \1 ...
+\end{outline}
+
+\medskip
+\noindent\autocite[vgl.][]{loosecoupling_reconceptualization}, basierend auf \autocite[vgl.][S. 101ff]{meilir_loosecoupling}
+\medskip
+
+\textbf{Lose Kopplung in Java}: \\
+Lose Kopplung in Java (und auch vielen anderen Sprachen) wird oft über Interfaces (bzw. in anderen Sprachen dazu äquivalentes) realisiert. Hier ein simples Beispiel eines Taschenrechners:
+\cinputminted{java}{chapters/chapter2_introduction/include/tight.java}{starke Kopplung Beispiel}{tight}
+Änderungen in der Calculator-Klassen (ändern der Methoden-Namen / Ändern der Parameter: z.B. Änderung auf Array, damit beliebige Anzahl übergeben werden kann), benötigen in diesem simplen Beispiel zumindest Änderung der CalcularorApp-Klasse oder im schlimmsten Fall sogar bis zur Main-Methode, wenn die CalculatorApp-Klasse nicht als Facade agiert und dann z.B. ebenfalls ein Array erwartet.
+
+Eine bessere Lösung dieser Problemstellung könnte wie folgt aussehen:
+\cinputminted{java}{chapters/chapter2_introduction/include/loose.java}{lose Kopplung Beispiel}{loose}
+
+Jedes \enquote{new} sorgt wieder für einen gewissen Grad an starker Kopplung, daher wird das Konzept der Interfaces dann noch mit Dependency-Injection kombiniert, um einen maximal möglichen Grad an Unabhängigkeit zu gewährleisten.
+% 
+\section{Verwendungsbeispiele aus der Praxis}
+\todo{write}
+% 
+\section{Vor- und Nachteile vom Mediator}\label{ref:vorteileNachteile}
+Zuerst: da der Mediator \gls{loose_coupling_g} fördert, sind die Vorteile dieses (\hyperref[ref:prosLoseKopplung]{Vorteile llose Kopplung}) auch auf den Mediator anwendbar.
+
+\paragraph{Vorteile}
+
+\todo{god object...}
+% 
+\section{Verwandte Design-Patterns}
+Der Mediator ähnelt der Facade. Allerdings unterscheidet er sich wie folgt:
+\todo{write this}

@@ -1,0 +1,50 @@
+\newcommand{\cfigure}[4]{
+    % #1 -> scaling factor from textwidth
+    % #2 -> source
+    % #3 -> caption
+    % #4 -> label 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=#1\textwidth]{#2}
+        \caption{#3}
+        \label{fig:#4}
+    \end{figure}
+}
+
+\NewEnviron{ctable}[5]{
+    % #1 -> width of the table
+    % #2 -> table column definition
+    % #3 -> caption
+    % #4 -> label
+    % #5 -> table heading
+    \label{table:#4}
+    \begin{tabularx}{#1}{#2}
+        \hline
+        #5 \\\hline \endhead
+        \BODY
+        \caption{#3}
+    \end{tabularx}
+}
+
+\newcommand{\cinputminted}[4]{
+    % #1 -> language - f.e. shell
+    % #2 -> ABSOLUT path!
+    % #3 -> caption
+    % #4 -> label
+    \begin{listing}[H]
+        \inputminted[
+            frame=lines,
+            framesep=2mm,
+            baselinestretch=1.2,
+            bgcolor=LightGray,
+            fontsize=\footnotesize,
+            linenos,
+            breaklines
+            % mathescape: enables math mode in code comments.
+            % showspaces: enables a special character to make spaces visible.
+            % rulecolor: changes the colour of the frame.
+        ]{#1}{#2}
+        \caption{#3}
+        \label{listing:#4}
+    \end{listing}
+}

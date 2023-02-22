@@ -1,0 +1,23 @@
+\documentclass[article, oneside]{memoir}
+\newcommand{\magiccomma}{\char"002C~} % magic command needed to create fanzy titles pls don't remove or else 42 will die
+
+\usepackage[
+    title = Handout,
+    subtitle = Mediator,
+    description = POSE~Mediator~Design-Pattern~Handout,
+    author = Simon~Fischer\newline5AHIF,
+    % date = 1337,
+    % school = HTL Perg,
+    subject = POSE,
+    % usemath,
+    counterdepth = 3
+]{htl}
+
+\begin{document}
+\HTLTitlepage
+\HTLTOC
+
+\import{./chapters}{chapters.tex}
+
+\HTLGlossaryReferences
+\end{document}
