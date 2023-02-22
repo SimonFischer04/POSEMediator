@@ -3,6 +3,7 @@ package eu.fischerserver.gitlab.pm.jsfui.bean;
 import eu.fischerserver.gitlab.pm.jsfui.model.PMData;
 import eu.fischerserver.gitlab.pm.jsfui.main.Mediator;
 import eu.fischerserver.gitlab.pm.jsfui.util.SerializationUtil;
+import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -15,7 +16,7 @@ import java.io.Serializable;
 @ViewScoped
 public class OverlayBackingBean implements Serializable {
     @Getter
-    private PMData pmData = new PMData(-1, true);
+    private PMData pmData = new PMData(-1, false);
 
     @Inject
     Mediator mediator;

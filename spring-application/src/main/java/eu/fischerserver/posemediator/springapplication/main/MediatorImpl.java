@@ -21,8 +21,13 @@ public class MediatorImpl implements Mediator {
 
     @Override
     public void onToggleMuteEvent() {
-        var current = new PMData(discordConnector.isMuted());
+        var current = getCurrentState();
         updatePMData(new PMData(!current.muteState()));
+    }
+
+    @Override
+    public PMData getCurrentState() {
+        return new PMData(discordConnector.isMuted());
     }
 
     private void updatePMData(PMData pmData) {

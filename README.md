@@ -7,9 +7,10 @@ Feel free to contribute or open an issue here: https://gitlab.fischerserver.eu/h
 
 ## planned:
 - [ ] JSF UI:
-    - [ ] mute state overlay
+    - [ ] credential management page
+    - [X] mute state overlay
         - [X] mute state UI mit animation fia on / off
-        - [ ] load inital state from server
+        - [X] load inital state from server
         - [X] toggle mute State in UI
     - [X] websocket
 - [ ] Spring Backend:

@@ -108,6 +108,10 @@ public class WSClient {
         send("hello", message);
     }
 
+    public void sendUpdateRequest() {
+        send("request/update", "");
+    }
+
     private void send(String topic, Object data) {
         if (session.isEmpty()) {
             System.err.println("SEND called before websocket connected!");

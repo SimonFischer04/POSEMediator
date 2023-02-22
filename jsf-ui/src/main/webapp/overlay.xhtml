@@ -36,6 +36,9 @@
                 document.querySelector('.strike-through-undo')?.classList?.add('undo');
             }
         };
+        evtSource.onopen = event => {
+            console.log('subscribed to see updates');
+        };
     </script>
     <f:facet name="style">
         <h:outputStylesheet library="css" name="overlay.css"/>
