@@ -1,7 +1,5 @@
 % Einleitung und evtl. Erklärung von zusätzlichen Themen die für das Verständnis des Design-Patterns sinnvoll, nützlich oder notwendig sind
-
-% Behavioral ...
-\chapter{Einleitung}
+\chapter{Einleitung}\label{ref:einleitung}
 Um die, bereits in der \hyperref[ref:motivation]{Motivation} erwähnten, vielen Abhängigkeiten zwischen den einzelnen Klassen aufzulösen und somit \gls{loose_coupling_g} herzustellen, wird ein Mediator eingesetzt. Wie auch in der Grafik \ref{fig:noMediatorVsMediator} veranschaulicht, interagieren Objekte dann nicht mehr direkt miteinander, sondern immer über den Mediator. Dies führt sowohl zu einigen Vor- als aber auch Nachteilen (siehe: \hyperref[ref:vorteileNachteile]{Vor- und Nachteile vom Mediator}). Weiters gehört der Mediator zur Gruppe der \gls{behavioralpattern_g}.
 \cfigure{0.95}{chapters/chapter2_introduction/assets/NoMediatorVsMediator}{Vergleich kein Mediator / Mediator - Extremfall}{noMediatorVsMediator}
 \autocite[vgl.][S. 273ff]{gangoffour_book}
@@ -34,13 +32,37 @@ Jedes \enquote{new} sorgt wieder für einen gewissen Grad an starker Kopplung, d
 \section{Verwendungsbeispiele aus der Praxis}
 \todo{write}
 % 
+\filbreak
 \section{Vor- und Nachteile vom Mediator}\label{ref:vorteileNachteile}
-Zuerst: da der Mediator \gls{loose_coupling_g} fördert, sind die Vorteile dieses (\hyperref[ref:prosLoseKopplung]{Vorteile llose Kopplung}) auch auf den Mediator anwendbar.
+\subsection{Vorteile}
+\begin{outline}
+    \1 Lose Kopplung: Da der Mediator \gls{loose_coupling_g} fördert, sind die Vorteile dieses (\hyperref[ref:prosLoseKopplung]{Vorteile llose Kopplung}) auch auf den Mediator anwendbar.
+        \2 Wartbarkeit: Änderungen in einer Colleague-Klasse benötigt nur Änderung im Mediator. Andere Colleague-Klassen bedürfen keinen Änderungen
+        \2 Wiederverwendbarkeit: Colleague und Mediator Klassen können unabhängig wiederverwendet / ausgetauscht werden
+        \2 Testbarkeit: Es kann einfach eine andere Implementierung des Mediator-Interfaces verwendet werden.
+    \1 Änderbarkeit / Erweiterbarkeit: Anderes Verhalten bzw. weitere Funktionen benötigt nur Änderung / erstellen einer Sub-Klasse bzw. Implementierung des Interfaces des Mediators. Colleague-Klassen können oft 1 zu 1 wiederverwendet werden,
+    \1 zentrale Stelle zur Verwaltung der Interaktions-Logik zwischen den Objekten. Auch sind dadurch die komplexität der Colleague Objekte selbst,
+        \2 bessere Übersicht / Lesbarkeit / Verständnis,
+        \2 bessere Wartbarkeit,
+        \2 vereinfachte Interaktionslogik: vorher Many-To-Many Beziehungen zwischen Colleagues - jetzt nur mehr One-To-One/Many: Colleague -(one)> Mediator -(many)> anderer Colleague
+    \1 ...
+\end{outline}
 
-\paragraph{Vorteile}
+\subsection{Nachteile}
+\begin{outline}
+    \1 Auslagerung der Komplexität der Interaktion zwischen Objekten in Mediator lässt diese nicht magisch verschwinden. Oft wird der Mediator selbst dann sehr komplex → wird zum Monolith, ohne den nichts geht → wieder nicht gut für Wiederverwendbarkeit
+    \1 \enquote{god object}: im Worstcase wird der Mediator zu einem oft als \enquote{God Object} bezeichneten Objekt. Also einem Objekt, dass alles kann / macht. Eine Klasse mit \textbf{allen (tausenden) Funktionen} der Applikation.
+    \1 geringere Flexibilität: Interaktion muss / sollte immer über Mediator passieren
+    \1 Mediator verletzt 1. SOLID Design Prinzip (Single-responsibility): gibt meist deutlich mehr als einen Grund den Mediator zu ändern / hat mehr als 1 Aufgabe
+    \1 Skalierbarkeit: Mediator kann zum Bottleneck werden
+    \1 einige kleinere (\enquote{unwichtige}) Nachteile:
+        \2 KISS-Prinzip / Overengineering: für kleine Applikationen erhöht der Mediator (wie auch andere Design-Patterns) nur Sinnlos den Aufwand der Entwicklung. Es bedarf hier generell immer einer Abwägung: Ja, Design-Patterns sind wichtig und sinnvoll, aber man kann es auch übertreiben
+        \2 (zusätzliches Objekt -> \enquote{höherer} Ressourcenbedarf)
+    \1 ...
+\end{outline}
 
-\todo{god object...}
+\autocite[vgl.][S. 273ff]{gangoffour_book} + eigene Ergänzungen
 % 
 \section{Verwandte Design-Patterns}
-Der Mediator ähnelt der Facade. Allerdings unterscheidet er sich wie folgt:
-\todo{write this}
+Der Mediator ähnelt dem Facade-Pattern. Allerdings unterscheidet er sich wie folgt: Einen Mediator kann man sich ein bisschen wie eine BI-direktionale-Fassade vorstellen. Eine Facade stellt z.B. eine einfachere Schnittstelle für eine komplexe Library bereit. Ein Mediator vereinfacht die Kommunikation \textbf{zwischen} (also in beide Richtungen!) zwei Objekten. Zusätzlich kann ein Mediator zusätzliche Funktionalität bereitstellen, die von den einzelnen Colleague Objekten selbst nicht bereitgestellt wird / bereitgestellt werden kann. 
+\autocite[vgl.][S. 273ff]{gangoffour_book}

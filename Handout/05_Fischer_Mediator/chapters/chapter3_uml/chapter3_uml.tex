@@ -1,5 +1,16 @@
-\chapter{UML-Diagramm}
-\section{Diagramm}
 % UML-Diagramm des Patterns 
-\section{Erklärung}
 % Textuelle Erklärung des Design-Patterns anhand des UML-Diagramms
+\chapter{UML-Diagramm und Erklärung des Patterns}
+Wie bereits in der \hyperref[ref:einleitung]{Einleitung} erwähnt, ist das Ziel, dass die Colleague Objekte nicht mehr direkt miteinander, sondern über den Mediator kommunizieren. Dies gelingt durch folgenden Aufbau. In folgender Grafik \ref{fig:uml} ist der grundlegende Aufbau eines Mediator dargestellt.
+\cfigure{0.9}{chapters/chapter3_uml/assets/Mediator}{Mediator UML-Diagramm von: \autocite{gangoffour_book}}{uml}
+\begin{outline}
+    \1 \textbf{Mediator} (auch oft als \enquote{IMediator} benannt): meist ein Interface (oder abstrakte Klasse) definiert die Schnittstelle, über die Colleague-Objekte mit dem Mediator und darüber auch mit anderen Colleague-Objekten kommunizieren können.
+    \1 \textbf{ConcreteMediator} (oder nur \enquote{Mediator}, wenn Interface \enquote{IMediator} ist): 
+        \2 eine konkrete Implementierung des Interfaces / der abstrakten Klasse. Hier ist die Logik des Mediators implementiert: simple Kommunikation zwischen Colleagues, neu-e Funktionalität (nicht in Colleague Klassen), ....
+        \2 hält alle notwendigen (müssen nicht alle sein. z. B.: \enquote{Mediator-Clients}, also Colleague Objekte, die nur auf Funktionen des Mediators zugreift, von diesem aber nicht aufgerufen werden) Referenzen auf mit ihm verbundenen Colleague-Objekte
+    \1 \textbf{Colleague} (\enquote{IColleague}): Noch eine weitere Abstraktions-Schicht (oft abstrakte Klasse), wenn mehrere Colleague-Objekte gleiche Funktionalitäten besitzen. 
+    \1 \textbf{ConcreteColleague}: Ein konkretes Colleage-Object (bzw. Standard Business-Logik-Objekt)
+        \2 \textbf{jedes} Colleague Objekt kennt / hat eine Referenz auf den Mediator (anders als in andere Richtung: Mediator muss nicht unbedingt jeden Colleague kennen)
+        \2 kommunizieren jetzt nur mehr mit Mediator (anstatt direkt mit anderen Colleague-Objekten): verwenden Funktionalität vom und stellen Funktionalität für den Mediator bereit.
+\end{outline}
+\autocite[vgl.][S. 273ff]{gangoffour_book}
