@@ -28,12 +28,34 @@ Eine bessere Lösung dieser Problemstellung könnte wie folgt aussehen:
 \cinputminted{java}{chapters/chapter2_introduction/include/loose.java}{lose Kopplung Beispiel}{loose}
 
 Jedes \enquote{new} sorgt wieder für einen gewissen Grad an starker Kopplung, daher wird das Konzept der Interfaces dann noch mit Dependency-Injection kombiniert, um einen maximal möglichen Grad an Unabhängigkeit zu gewährleisten.
+\newpage
 % 
 \section{Verwendungsbeispiele aus der Praxis}
-\todo{write}
+Das Mediator Pattern ist in der Praxis häufig im Einsatz. Unter anderem findet es bei GUI-Anwendungen (auch im JDK) sehr gern, aber natürlich auch bei anderen Problemstellungen Anwendung.
+\begin{outline}
+    \1 MVC: in fast allen Fällen agiert der Controller beim MVC Pattern als Mediator zwischen Model und View. z.B. in einer Swing-Applikation (oder auch Web-Applikation wie z.B. Angular) kümmert er sich um Data-Binding mit dem View, aktiviert / deaktiviert z.B. einen \enquote{absenden} Button basierend darauf, ob bereits alle notwendigen Eingaben getätigt wurden und sendet dann beim Klick dieses die Daten weiter z.B. Persistierung der Daten in Datenbank
+    (bei \enquote{HTML-Generatoren}, wie z.B. JSF wird die Backing-Bean teils als Mediator gesehen / teils nicht, da sie oft \enquote{nur} Daten für den JSF->Html Generator bereitstellt)
+    \1 Swing: Event Dispatch Thread: 1 Thread, der sich um sämtliche GUI-Relevante dinge, kümmert - alles wird NUR von diesem Thread ausgeführt: Änderungen / Benutzer-Events / ... → sicheres mutlithreading (wenn mehrere Threads am UI Änderungen durchführen, führt die meist nur zu Problemen)
+    \1 AWT ActionListener: auch hier wird intern ein Mediator verwendet, der bei Events im GUI benachrichtigt wird und dann entsprechend das Event an die einzelnen ActionListener weiterleitet
+    \1 java.util.concurrent: Mediator koordiniert Kommunikation zwischen Threads. Synchronisation durch z.B. Blocking-Queues, ...
+    \1 Javascript event loop: Der Javascript Event Loop kann ebenfalls als Mediator gesehen werden. Er erhält von Objekten Ereignisse / Aufgaben wie z.B. senden einer asynchronen HTTP-Request, und kümmert sich darum, sobald das Ergebnis des Servers da ist, eine entsprechende Callback-Funktion aufzurufen
+    \1 ...
+\end{outline}
+\subsection{konkreten Anwendung: Smart-Home-Hub}
+In Grafik \ref{fig:smartHomeHub} ist eine einfache konkrete Anwendung des Mediator Design Patterns zu sehen: Ein zentraler Smart-Home-Hub wie z.B. Home-Assistant / ..., der als Mediator zwischen den einzelnen Komponenten dient.
+\cfigure{0.8}{chapters/chapter2_introduction/assets/MediatorSmartHome}{grafische Darstellugn Smart-Home-Hub-Mediator}{smartHomeHub}
+Beispielsweise könnte hier folgende Kommunikation ablaufen:
+\begin{outline}
+    \1 \textbf{Smartphone App}: interagiert mit Zentrale:
+        \2 steuert Komponenten: Licht, Heizung, ...
+        \2 erhält Informationen: Information über aktuelle Temperatur → Push-Benachrichtigung, wenn zu kalt, ...
+    \1 \textbf{smarter Heizkörperregler}: wird vom Hub gesteuert und stellt die entsprechend gewünschte Temperatur ein
+    \1 \textbf{smarte Lampe}: wird vom Hub gesteuert, wenn Person auf Lichtschalter drückt aber auch z.B. automatisch durch Bewegungsmelder, automatische Aufwachroutine, ...
+    \1 \textbf{smarter Lichtschalter} (hier z. B.: Sonoff-NSPanel): lässt sowohl Licht als auch andere Dinge steuern / Informationen anzeigen
+\end{outline}
 % 
-\filbreak
 \section{Vor- und Nachteile vom Mediator}\label{ref:vorteileNachteile}
+\filbreak
 \subsection{Vorteile}
 \begin{outline}
     \1 Lose Kopplung: Da der Mediator \gls{loose_coupling_g} fördert, sind die Vorteile dieses (\hyperref[ref:prosLoseKopplung]{Vorteile llose Kopplung}) auch auf den Mediator anwendbar.
@@ -41,13 +63,14 @@ Jedes \enquote{new} sorgt wieder für einen gewissen Grad an starker Kopplung, d
         \2 Wiederverwendbarkeit: Colleague und Mediator Klassen können unabhängig wiederverwendet / ausgetauscht werden
         \2 Testbarkeit: Es kann einfach eine andere Implementierung des Mediator-Interfaces verwendet werden.
     \1 Änderbarkeit / Erweiterbarkeit: Anderes Verhalten bzw. weitere Funktionen benötigt nur Änderung / erstellen einer Sub-Klasse bzw. Implementierung des Interfaces des Mediators. Colleague-Klassen können oft 1 zu 1 wiederverwendet werden,
-    \1 zentrale Stelle zur Verwaltung der Interaktions-Logik zwischen den Objekten. Auch sind dadurch die komplexität der Colleague Objekte selbst,
+    \1 zentrale Stelle zur Verwaltung der Interaktions-Logik zwischen den Objekten. Auch sind dadurch die Komplexität der Colleague Objekte selbst,
         \2 bessere Übersicht / Lesbarkeit / Verständnis,
         \2 bessere Wartbarkeit,
         \2 vereinfachte Interaktionslogik: vorher Many-To-Many Beziehungen zwischen Colleagues - jetzt nur mehr One-To-One/Many: Colleague -(one)> Mediator -(many)> anderer Colleague
     \1 ...
 \end{outline}
 
+\filbreak
 \subsection{Nachteile}
 \begin{outline}
     \1 Auslagerung der Komplexität der Interaktion zwischen Objekten in Mediator lässt diese nicht magisch verschwinden. Oft wird der Mediator selbst dann sehr komplex → wird zum Monolith, ohne den nichts geht → wieder nicht gut für Wiederverwendbarkeit
