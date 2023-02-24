@@ -1,9 +1,8 @@
 package eu.fischerserver.gitlab.pm.jsfui.bean;
 
-import eu.fischerserver.gitlab.pm.jsfui.model.PMData;
 import eu.fischerserver.gitlab.pm.jsfui.main.Mediator;
+import eu.fischerserver.gitlab.pm.jsfui.model.PMData;
 import eu.fischerserver.gitlab.pm.jsfui.util.SerializationUtil;
-import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;

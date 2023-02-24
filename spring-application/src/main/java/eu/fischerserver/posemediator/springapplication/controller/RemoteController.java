@@ -23,4 +23,9 @@ public class RemoteController {
     public PMData getCurrentState() {
         return mediator.getCurrentState();
     }
+
+    @PutMapping("discord/login")
+    public void loginToDiscord(){
+        mediator.login();
+    }
 }

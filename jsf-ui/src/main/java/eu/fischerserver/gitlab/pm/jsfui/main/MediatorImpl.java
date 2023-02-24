@@ -2,8 +2,8 @@ package eu.fischerserver.gitlab.pm.jsfui.main;
 
 import eu.fischerserver.gitlab.pm.jsfui.api.ApiException;
 import eu.fischerserver.gitlab.pm.jsfui.api.RemoteControllerApi;
-import eu.fischerserver.gitlab.pm.jsfui.model.PMData;
 import eu.fischerserver.gitlab.pm.jsfui.main.include.update.PMUpdateManager;
+import eu.fischerserver.gitlab.pm.jsfui.model.PMData;
 import eu.fischerserver.gitlab.pm.jsfui.service.WSClient;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;

@@ -1,7 +1,7 @@
 package eu.fischerserver.gitlab.pm.jsfui.bean;
 
-import eu.fischerserver.gitlab.pm.jsfui.model.PMData;
 import eu.fischerserver.gitlab.pm.jsfui.main.include.update.PMUpdateManager;
+import eu.fischerserver.gitlab.pm.jsfui.model.PMData;
 import eu.fischerserver.gitlab.pm.jsfui.service.WSClient;
 import eu.fischerserver.gitlab.pm.jsfui.util.SerializationUtil;
 import jakarta.faces.context.FacesContext;

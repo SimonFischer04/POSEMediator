@@ -19,4 +19,9 @@ public interface Mediator {
      * util function to get the current mute status
      */
     PMData getCurrentState();
+
+    /**
+     * try logging in into all required services
+     */
+    void login();
 }

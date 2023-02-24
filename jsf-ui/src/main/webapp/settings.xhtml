@@ -21,7 +21,42 @@
 
 <h:body>
     <p:linkButton outcome="index" value="Back"/>
-    Settings works
+    <h:form id="form">
+        <p:growl id="msgs" showDetail="true"/>
+
+        <div class="card">
+            <h5>Row Editing</h5>
+            <p:dataTable id="products1" var="credential" value="#{settingsBackingBean.credentials}" editable="true"
+                         style="margin-bottom:20px">
+
+                <p:ajax event="rowEdit" listener="#{settingsBackingBean.onRowEdit}" update=":form:msgs"/>
+                <p:ajax event="rowEditCancel" listener="#{settingsBackingBean.onRowCancel}" update=":form:msgs"/>
+
+                <p:column headerText="ID">
+                    <h:outputText value="#{credential.id}"/>
+                </p:column>
+
+                <p:column headerText="Key">
+                    <h:outputText value="#{credential.key}"/>
+                </p:column>
+
+                <p:column headerText="Value">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{credential.value}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:password id="pwd2" value="#{credential.value}" label="Password 2" required="true"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column style="width:6rem">
+                    <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                </p:column>
+            </p:dataTable>
+        </div>
+    </h:form>
 </h:body>
 
 </html>

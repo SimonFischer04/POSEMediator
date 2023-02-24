@@ -4,6 +4,7 @@ import eu.fischerserver.posemediator.springapplication.entity.CredentialEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 
 /**
  * A DTO for the {@link CredentialEntity} entity
@@ -22,6 +23,9 @@ public record Credential(
         @Schema(type = "string", example = "A Very Secret Test Value")
         String value
 ) {
+    public Credential {
+    }
+
     public Credential(String key, String value) {
         this(0L, key, value);
     }
