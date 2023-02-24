@@ -41,3 +41,12 @@ Feel free to contribute or open an issue here: https://gitlab.fischerserver.eu/h
             - javax.smartcardio.y a besonders mit Java17...
 - [ ] http interface
     - [ ] esp trigger
+
+## presentation idea:
+- 1 activity impress
+- 1 activity example: split screen:
+
+| Overlay | Rest     |
+|---------|----------|
+| uml     | discord  |
+
