@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/simif/Dev/Projects/posemediator/spring-application</OriginalElement>
+  <nodes>
+    <node x="2116.929584580733" y="-29.745283018867894">eu.fischerserver.posemediator.springapplication.controller.WSRemoteController</node>
+    <node x="1046.3230106644787" y="2601.4813895781635">eu.fischerserver.posemediator.springapplication.config.WebSocketConfig</node>
+    <node x="1545.1465012627473" y="2601.4813895781635">eu.fischerserver.posemediator.springapplication.Application</node>
+    <node x="1397.7865053322398" y="-55.245283018867894">eu.fischerserver.posemediator.springapplication.controller.impl.RemoteControllerImpl</node>
+    <node x="1535.1465012627473" y="1914.8627429693952">eu.fischerserver.posemediator.springapplication.exception.InvalidDiscordConfigException</node>
+    <node x="2083.161745299134" y="2601.4813895781635">eu.fischerserver.posemediator.springapplication.exception.ExceptionHandlerAdvice</node>
+    <node x="2661.1769893355213" y="108.83921246923728">eu.fischerserver.posemediator.springapplication.main.connector.discord.DummyDiscordConnector</node>
+    <node x="1052.3230106644787" y="646.3287525165035">eu.fischerserver.posemediator.springapplication.service.WSService</node>
+    <node x="2591.1769893355213" y="1270.8141191881234">eu.fischerserver.posemediator.springapplication.repository.CredentialRepository</node>
+    <node x="1790.2602315081513" y="1021.0">eu.fischerserver.posemediator.springapplication.controller.CredentialController.CredentialSaveRequest</node>
+    <node x="2702.1769893355213" y="2601.4813895781635">eu.fischerserver.posemediator.springapplication.config.MapperSpringConfig</node>
+    <node x="1595.2602315081513" y="911.0">eu.fischerserver.posemediator.springapplication.controller.CredentialController</node>
+    <node x="1807.25" y="156.92534864643153">eu.fischerserver.posemediator.springapplication.main.Mediator</node>
+    <node x="2286.9353184449965" y="1752.6314185684205">eu.fischerserver.posemediator.springapplication.mapper.CredentialDtoToEntityMapper</node>
+    <node x="2324.726650035859" y="2096.125723738627">eu.fischerserver.posemediator.springapplication.model.PMData</node>
+    <node x="2723.1769893355213" y="1621.122828784119">eu.fischerserver.posemediator.springapplication.entity.CredentialEntity</node>
+    <node x="1052.3230106644787" y="1621.122828784119">eu.fischerserver.posemediator.springapplication.model.DiscordRpcConfig.DiscordRpcConfigBuilder</node>
+    <node x="1052.3230106644787" y="219.92534864643153">eu.fischerserver.posemediator.springapplication.main.connector.ui.UIConnectorImpl</node>
+    <node x="2499.1769893355213" y="637.2961443806399">eu.fischerserver.posemediator.springapplication.service.DiscordProxyService</node>
+    <node x="1409.0884946677606" y="232.92534864643153">eu.fischerserver.posemediator.springapplication.main.connector.ui.UIConnector</node>
+    <node x="2222.935318444996" y="1621.122828784119">eu.fischerserver.posemediator.springapplication.mapper.CredentialEntityToDtoMapper</node>
+    <node x="1052.3230106644787" y="898.0">eu.fischerserver.posemediator.springapplication.controller.impl.CredentialControllerImpl</node>
+    <node x="2115.7186104218363" y="1195.3141191881234">eu.fischerserver.posemediator.springapplication.service.CredentialService</node>
+    <node x="2206.2134946677606" y="169.42534864643153">eu.fischerserver.posemediator.springapplication.main.connector.discord.DiscordConnector</node>
+    <node x="1769.75" y="381.09598031173084">eu.fischerserver.posemediator.springapplication.main.MediatorImpl</node>
+    <node x="1046.3230106644787" y="1915.8627429693954">eu.fischerserver.posemediator.springapplication.model.DiscordRpcConfig</node>
+    <node x="1836.75" y="-42.24528301886778">eu.fischerserver.posemediator.springapplication.controller.RemoteController</node>
+    <node x="2486.1769893355213" y="911.0">eu.fischerserver.posemediator.springapplication.service.impl.CredentialServiceImpl</node>
+    <node x="1397.7865053322398" y="633.3287525165035">eu.fischerserver.posemediator.springapplication.service.impl.WSServiceImpl</node>
+    <node x="1545.1465012627473" y="2234.0293114143924">eu.fischerserver.posemediator.springapplication.exception.InvalidDiscordConfigException.InvalidDiscordConfigExceptionProblemDetail</node>
+    <node x="1889.6936475544717" y="1621.122828784119">eu.fischerserver.posemediator.springapplication.model.Credential</node>
+    <node x="2599.1769893355213" y="288.9372436423299">eu.fischerserver.posemediator.springapplication.main.connector.discord.ActualDiscordConnector</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="eu.fischerserver.posemediator.springapplication.main.MediatorImpl" target="eu.fischerserver.posemediator.springapplication.service.WSService" relationship="TO_ONE">
+      <point x="0.0" y="-130.49998031173084" />
+      <point x="1930.75" y="332.0" />
+      <point x="1182.323" y="332.0" />
+      <point x="-1.0664478622857132E-5" y="-29.499752516503577" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.main.connector.discord.ActualDiscordConnector" target="eu.fischerserver.posemediator.springapplication.service.CredentialService" relationship="TO_ONE">
+      <point x="-156.49998933552115" y="-2.4364232990592427E-4" />
+      <point x="2456.0" y="407.437" />
+      <point x="2456.0" y="1312.814" />
+      <point x="155.00038957816378" y="-1.1918812333533424E-4" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.service.impl.CredentialServiceImpl" target="eu.fischerserver.posemediator.springapplication.repository.CredentialRepository" relationship="TO_ONE">
+      <point x="52.5" y="130.5" />
+      <point x="0.0" y="-42.0" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.main.connector.discord.ActualDiscordConnector" target="eu.fischerserver.posemediator.springapplication.main.connector.discord.DiscordConnector" relationship="REALIZATION">
+      <point x="1.0664478850230807E-5" y="-118.5002436423299" />
+      <point x="2755.677" y="255.0" />
+      <point x="2643.677" y="255.0" />
+      <point x="2643.677" y="212.339" />
+      <point x="95.49950533223955" y="-12.086348646431532" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.main.MediatorImpl" target="eu.fischerserver.posemediator.springapplication.main.Mediator" relationship="REALIZATION">
+      <point x="15.0" y="-130.5" />
+      <point x="15.0" y="67.5" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.exception.InvalidDiscordConfigException.InvalidDiscordConfigExceptionProblemDetail" target="eu.fischerserver.posemediator.springapplication.model.DiscordRpcConfig" relationship="TO_ONE">
+      <point x="4.98737252655701E-4" y="-106.0003114143924" />
+      <point x="1754.647" y="2206.0" />
+      <point x="1243.823" y="2206.0" />
+      <point x="-1.0664478622857132E-5" y="130.00025703060442" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.controller.impl.RemoteControllerImpl" target="eu.fischerserver.posemediator.springapplication.main.Mediator" relationship="TO_ONE">
+      <point x="4.946677602220007E-4" y="68.00028301886789" />
+      <point x="1525.287" y="139.425" />
+      <point x="2086.0" y="139.425" />
+      <point x="2086.0" y="224.425" />
+      <point x="123.5" y="-3.4864643151877317E-4" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.main.connector.discord.ActualDiscordConnector" target="eu.fischerserver.posemediator.springapplication.main.Mediator" relationship="TO_ONE">
+      <point x="-156.49998933552115" y="-48.93724364232992" />
+      <point x="2086.0" y="358.5" />
+      <point x="2086.0" y="224.425" />
+      <point x="123.5" y="-3.4864643151877317E-4" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.service.impl.CredentialServiceImpl" target="eu.fischerserver.posemediator.springapplication.service.CredentialService" relationship="REALIZATION">
+      <point x="-125.5" y="130.5" />
+      <point x="2573.6769893355213" y="1327.814" />
+      <point x="155.0" y="14.999880811876665" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.controller.impl.CredentialControllerImpl" target="eu.fischerserver.posemediator.springapplication.service.CredentialService" relationship="TO_ONE">
+      <point x="-1.0664478622857132E-5" y="-68.0" />
+      <point x="1282.323" y="859.5" />
+      <point x="2456.0" y="859.5" />
+      <point x="2456.0" y="1312.814" />
+      <point x="155.00038957816378" y="-1.1918812333533424E-4" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.main.connector.discord.ActualDiscordConnector" target="eu.fischerserver.posemediator.springapplication.service.DiscordProxyService" relationship="TO_ONE">
+      <point x="-50.0" y="118.5" />
+      <point x="0.0" y="-42.0" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.controller.CredentialController.CredentialSaveRequest" target="eu.fischerserver.posemediator.springapplication.controller.CredentialController" relationship="INNER_CLASS">
+      <point x="-132.5" y="0.0" />
+      <point x="1772.7602315081513" y="1063.5" />
+      <point x="-52.5" y="55.0" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.main.connector.ui.UIConnectorImpl" target="eu.fischerserver.posemediator.springapplication.service.WSService" relationship="TO_ONE">
+      <point x="-1.0664478622857132E-5" y="42.49965135356848" />
+      <point x="-1.0664478622857132E-5" y="-29.499752516503577" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.main.MediatorImpl" target="eu.fischerserver.posemediator.springapplication.main.connector.discord.DiscordConnector" relationship="TO_ONE">
+      <point x="161.0" y="0.0" />
+      <point x="2301.7134946677606" y="511.59598031173084" />
+      <point x="0.0" y="55.0" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.controller.impl.CredentialControllerImpl" target="eu.fischerserver.posemediator.springapplication.controller.CredentialController" relationship="REALIZATION">
+      <point x="230.0" y="0.0" />
+      <point x="-230.0" y="0.0" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.exception.InvalidDiscordConfigException" target="eu.fischerserver.posemediator.springapplication.model.DiscordRpcConfig" relationship="TO_ONE">
+      <point x="4.98737252655701E-4" y="131.00025703060464" />
+      <point x="1754.647" y="2206.0" />
+      <point x="1243.823" y="2206.0" />
+      <point x="-1.0664478622857132E-5" y="130.00025703060442" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.controller.WSRemoteController" target="eu.fischerserver.posemediator.springapplication.main.Mediator" relationship="TO_ONE">
+      <point x="-122.99958458073297" y="2.830188678952794E-4" />
+      <point x="2086.0" y="12.755" />
+      <point x="2086.0" y="224.425" />
+      <point x="123.5" y="-3.4864643151877317E-4" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.controller.impl.RemoteControllerImpl" target="eu.fischerserver.posemediator.springapplication.controller.RemoteController" relationship="REALIZATION">
+      <point x="127.5" y="1.1368683772161603E-13" />
+      <point x="-94.0" y="0.0" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.main.connector.ui.UIConnectorImpl" target="eu.fischerserver.posemediator.springapplication.main.connector.ui.UIConnector" relationship="REALIZATION">
+      <point x="130.0" y="0.0" />
+      <point x="-130.0" y="0.0" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.exception.InvalidDiscordConfigException.InvalidDiscordConfigExceptionProblemDetail" target="eu.fischerserver.posemediator.springapplication.exception.InvalidDiscordConfigException" relationship="INNER_CLASS">
+      <point x="15.000498737252656" y="-106.0" />
+      <point x="15.000498737252656" y="131.0" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.model.DiscordRpcConfig.DiscordRpcConfigBuilder" target="eu.fischerserver.posemediator.springapplication.model.DiscordRpcConfig" relationship="INNER_CLASS">
+      <point x="-9.0" y="130.0" />
+      <point x="0.0" y="-130.0" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.main.connector.discord.DummyDiscordConnector" target="eu.fischerserver.posemediator.springapplication.main.connector.discord.DiscordConnector" relationship="REALIZATION">
+      <point x="1.0664478850230807E-5" y="55.49978753076272" />
+      <point x="2786.677" y="255.0" />
+      <point x="2643.677" y="255.0" />
+      <point x="2643.677" y="212.339" />
+      <point x="95.49950533223955" y="-12.086348646431532" />
+    </edge>
+    <edge source="eu.fischerserver.posemediator.springapplication.service.impl.WSServiceImpl" target="eu.fischerserver.posemediator.springapplication.service.WSService" relationship="REALIZATION">
+      <point x="-151.5" y="0.0" />
+      <point x="130.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.4333451830785638" showDependencies="true" x="1989.4999999999998" y="1350.4999999999998" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
