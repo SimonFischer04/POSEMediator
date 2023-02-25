@@ -18,7 +18,7 @@ School Task about Design-Patterns (Mediator) with presentation, handout and exam
         - [X] toggle mute State in UI
     - [X] websocket
 - [X] Spring Backend:
-    - [ ] discord
+    - [X] discord
     - [X] http interface
         - [X] interface
     - [X] Mediator
