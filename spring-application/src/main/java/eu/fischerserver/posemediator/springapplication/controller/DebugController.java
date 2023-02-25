@@ -43,6 +43,11 @@ public class DebugController {
         messagingTemplate.convertAndSend("/topic/greetings", "triggered by http: " + new WSDebugController.HelloMessage(UUID.randomUUID().toString()));
     }
 
+    @PostMapping("test5")
+    public void test5(@RequestBody Test test){
+        System.out.println();
+    }
+
     public record Test(String a) {
     }
 }

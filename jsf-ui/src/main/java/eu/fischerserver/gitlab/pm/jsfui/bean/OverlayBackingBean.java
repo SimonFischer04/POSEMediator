@@ -1,8 +1,10 @@
 package eu.fischerserver.gitlab.pm.jsfui.bean;
 
+import eu.fischerserver.gitlab.pm.jsfui.api.ApiException;
 import eu.fischerserver.gitlab.pm.jsfui.main.Mediator;
 import eu.fischerserver.gitlab.pm.jsfui.model.PMData;
 import eu.fischerserver.gitlab.pm.jsfui.util.SerializationUtil;
+import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -28,7 +30,17 @@ public class OverlayBackingBean implements Serializable {
     }
 
     public void toggleMute() {
-        mediator.onToggleMuteEvent();
+        try {
+            mediator.onToggleMuteEvent();
+
+            FacesMessage msg = new FacesMessage("Update Sent");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        } catch (ApiException e) {
+            e.printStackTrace();
+
+            FacesMessage msg = new FacesMessage("Error: %d - %s".formatted(e.getResponse().getStatusInfo().getStatusCode(), e.getResponse().getStatusInfo().getReasonPhrase()));
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
     }
 }
 

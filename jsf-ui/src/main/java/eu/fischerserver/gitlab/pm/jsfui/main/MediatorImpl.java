@@ -37,12 +37,8 @@ public class MediatorImpl implements Mediator {
     }
 
     @Override
-    public void onToggleMuteEvent() {
-        try {
-            remoteControllerApi.toggleMute();
-        } catch (ApiException e) {
-            throw new RuntimeException(e);
-        }
+    public void onToggleMuteEvent() throws ApiException {
+        remoteControllerApi.toggleMute();
     }
 
     @Override

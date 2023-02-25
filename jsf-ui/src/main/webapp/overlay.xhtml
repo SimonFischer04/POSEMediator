@@ -48,10 +48,18 @@
 <h:body>
     <h:form>
         <p:linkButton outcome="index" value="Back"/>
+
+        <p:growl id="msgs" showDetail="true">
+            <p:autoUpdate/>
+        </p:growl>
+
+        <h1>Overlay Page</h1>
+
         <p:remoteCommand name="update" update="a" action="#{overlayBackingBean.update()}"/>
         <p:outputPanel id="a">
             <h:outputText value="#{overlayBackingBean.pmData}"/>
         </p:outputPanel>
+
         <p:commandButton value="Toggle Mute" action="#{overlayBackingBean.toggleMute()}" ajax="true"/>
 
         <div id="image-container">

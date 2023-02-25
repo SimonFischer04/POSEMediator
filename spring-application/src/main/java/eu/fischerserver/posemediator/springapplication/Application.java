@@ -30,7 +30,7 @@ public class Application {
             if (!credentialService.existsByKey("test")) {
                 credentialService.save(new Credential("test", "A VerySecret Test-Value"));
             }
-            if (!credentialService.existsByKey("CLIENT_ID"))
+            if (!credentialService.existsByKey("DISCORD_CLIENT_ID"))
                 credentialService.saveDummyDiscordConfig();
             System.out.println();
         };

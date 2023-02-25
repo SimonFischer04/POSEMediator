@@ -20,12 +20,16 @@
 </h:head>
 
 <h:body>
-    <p:linkButton outcome="index" value="Back"/>
     <h:form id="form">
-        <p:growl id="msgs" showDetail="true"/>
+        <p:linkButton outcome="index" value="Back"/>
+        <h1>Settings Page</h1>
+
+        <p:growl id="msgs" showDetail="true">
+            <p:autoUpdate/>
+        </p:growl>
 
         <div class="card">
-            <h5>Row Editing</h5>
+            <h2>Credential Configuration</h2>
             <p:dataTable id="products1" var="credential" value="#{settingsBackingBean.credentials}" editable="true"
                          style="margin-bottom:20px">
 
@@ -43,10 +47,11 @@
                 <p:column headerText="Value">
                     <p:cellEditor>
                         <f:facet name="output">
-                            <h:outputText value="#{credential.value}"/>
+                            <!--                            <h:outputText value="#{credential.value}"/>-->
+                            <h:outputText value="*****"/>
                         </f:facet>
                         <f:facet name="input">
-                            <p:password id="pwd2" value="#{credential.value}" label="Password 2" required="true"/>
+                            <p:password value="#{credential.value}" toggleMask="true" redisplay="true" required="true"/>
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
@@ -56,6 +61,8 @@
                 </p:column>
             </p:dataTable>
         </div>
+
+        <p:commandButton action="#{settingsBackingBean.loginToDiscord()}" value="Login to Discord" ajax="true"/>
     </h:form>
 </h:body>
 

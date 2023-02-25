@@ -9,7 +9,7 @@
 
 import * as rpc from "discord-rpc";
 import nodeFetch from "node-fetch";
-import { URLSearchParams } from "url";
+import {URLSearchParams} from "url";
 
 // Defined here because nodejs does not seem to accept
 // circular imports.
@@ -29,8 +29,8 @@ export async function createLoginData(
     scopes: string[],
 ): Promise<rpc.RPCLoginOptions> {
     await client.connect(config.clientId);
-    const redirectUrl = config.redirectUrl === undefined ? "http://127.0.0.1" : config.redirectUrl;
-    if (config.accessToken === undefined || config.refreshToken === undefined || config.expireTime === undefined) {
+    const redirectUrl = config.redirectUrl ?? "http://127.0.0.1";
+    if (!config.accessToken || !config.refreshToken || !config.expireTime) {
         // Call authorize
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore

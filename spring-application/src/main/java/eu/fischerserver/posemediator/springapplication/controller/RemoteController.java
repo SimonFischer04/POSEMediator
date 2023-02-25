@@ -1,31 +1,29 @@
 package eu.fischerserver.posemediator.springapplication.controller;
 
-import eu.fischerserver.posemediator.springapplication.main.Mediator;
+import eu.fischerserver.posemediator.springapplication.exception.InvalidDiscordConfigException;
 import eu.fischerserver.posemediator.springapplication.model.PMData;
-import lombok.RequiredArgsConstructor;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
 @RequestMapping("/api/remote")
-@RequiredArgsConstructor
-public class RemoteController {
-    private final Mediator mediator;
-
+public interface RemoteController {
     @PutMapping("toggleMute")
-    public void toggleMute() {
-        mediator.onToggleMuteEvent();
-    }
+    void toggleMute();
 
     @GetMapping("current")
-    public PMData getCurrentState() {
-        return mediator.getCurrentState();
-    }
+    PMData getCurrentState();
 
     @PutMapping("discord/login")
-    public void loginToDiscord(){
-        mediator.login();
-    }
+    @Operation(summary = "login to discord", description = "try login in into discord using the credentials stored server-side")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "success"),
+            @ApiResponse(responseCode = "510", description = "config on server invalid", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InvalidDiscordConfigException.InvalidDiscordConfigExceptionProblemDetail.class))})
+    })
+    void loginToDiscord();
 }

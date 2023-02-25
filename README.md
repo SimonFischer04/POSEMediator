@@ -10,14 +10,14 @@ School Task about Design-Patterns (Mediator) with presentation, handout and exam
 \<TODO\>
 
 ## planned:
-- [ ] JSF UI:
-    - [ ] credential management page
+- [X] JSF UI:
+    - [X] credential management page
     - [X] mute state overlay
         - [X] mute state UI mit animation fia on / off
         - [X] load inital state from server
         - [X] toggle mute State in UI
     - [X] websocket
-- [ ] Spring Backend:
+- [X] Spring Backend:
     - [ ] discord
     - [X] http interface
         - [X] interface

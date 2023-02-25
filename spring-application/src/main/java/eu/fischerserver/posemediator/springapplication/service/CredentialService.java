@@ -20,4 +20,7 @@ public interface CredentialService {
     boolean hasValidDiscordConfig();
 
     void saveDummyDiscordConfig();
+
+    void saveDiscordConfig(DiscordRpcConfig config);
+
 }

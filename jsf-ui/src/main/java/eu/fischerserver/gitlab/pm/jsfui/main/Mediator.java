@@ -1,5 +1,6 @@
 package eu.fischerserver.gitlab.pm.jsfui.main;
 
+import eu.fischerserver.gitlab.pm.jsfui.api.ApiException;
 import eu.fischerserver.gitlab.pm.jsfui.model.PMData;
 
 public interface Mediator {
@@ -13,7 +14,7 @@ public interface Mediator {
     /**
      * event to trigger mute state change f.e. when toggle-mute button is pressed
      */
-    void onToggleMuteEvent();
+    void onToggleMuteEvent() throws ApiException;
 
     /**
      * util function to get the current mute status
