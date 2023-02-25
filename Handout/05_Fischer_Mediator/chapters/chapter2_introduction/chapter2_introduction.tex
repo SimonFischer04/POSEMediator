@@ -30,7 +30,7 @@ Eine bessere Lösung dieser Problemstellung könnte wie folgt aussehen:
 Jedes \enquote{new} sorgt wieder für einen gewissen Grad an starker Kopplung, daher wird das Konzept der Interfaces dann noch mit Dependency-Injection kombiniert, um einen maximal möglichen Grad an Unabhängigkeit zu gewährleisten.
 \newpage
 % 
-\section{Verwendungsbeispiele aus der Praxis}
+\section{Verwendungsbeispiele aus der Praxis}\label{ref:VerwendungPraxis}
 Das Mediator Pattern ist in der Praxis häufig im Einsatz. Unter anderem findet es bei GUI-Anwendungen (auch im JDK) sehr gern, aber natürlich auch bei anderen Problemstellungen Anwendung.
 \begin{outline}
     \1 MVC: in fast allen Fällen agiert der Controller beim MVC Pattern als Mediator zwischen Model und View. z.B. in einer Swing-Applikation (oder auch Web-Applikation wie z.B. Angular) kümmert er sich um Data-Binding mit dem View, aktiviert / deaktiviert z.B. einen \enquote{absenden} Button basierend darauf, ob bereits alle notwendigen Eingaben getätigt wurden und sendet dann beim Klick dieses die Daten weiter z.B. Persistierung der Daten in Datenbank

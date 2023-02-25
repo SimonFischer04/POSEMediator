@@ -1,2 +1,55 @@
 %  Kurze Darstellung des selbst programmierten Beispiels und Anwendung desselben (mit Screenshots und Anleitung). 
 \chapter{Darstellung des selbst programmierten Beispiels}
+INFO: Das gesamte Beispiel (samt dieser Ausarbeitung) ist auch zu finden unter: \url{https://github.com/SimonFischer04/POSEMediator}
+\section{Einleitung}
+Die Haupt-Funktionalität ist eigentlich in einem Bild \ref{fig:overlay} zusammengefasst: 
+\cfigure{0.3}{chapters/chapter4_example/assets/Overlay}{Overlay - Seite}{overlay}
+Durch Klick auf den Button der aktuelle Mikrofon-Status zwischen stumm / nicht stumm umgeschaltet. Die Komplexität liegt im Detail. Das Besondere: 
+\begin{outline}
+    \1 Animation beim Umschalten,
+    \1 Handling im Backend: Der Button führt einfach nur einen HTTP Request aus → könnte auch über jede andere Quelle geschehen (z.B. Remote per \enquote{Funk-Knopf}), zum Testen aber z.B. auch über Swagger-UI siehe Grafik \ref{fig:swagger}. 
+    \1 Live-Update: Das UI ist (über SSE, mit JSF Backing Bean Logik und dann mittels Websockets) zum Backend verbunden. Beispielhafte Anwendung: man hat nur 1 Monitor, kann am Handy immer noch aktuellen Status sehen / schnell wechseln, obwohl man gerade mit anderen Dingen beschäftigt ist → schneller, kein Fokuswechsel, ...
+    \1 Discord Integration (über Proxy): Ziel ist es das Mikrofon in Discord umzuschalten
+\end{outline}
+% 
+% ---------------------------------------------------------------------------------------------------------
+% 
+\section{Weitere UI - Seiten}
+Um auf Discord zugreifen zu können, sind Credentials nötig. Diese können auf, die in Grafik \ref{fig:settings} ersichtlichen, Settings-Seite sicher (standardmäßig ausgeblendete Felder) konfiguriert und in einer Datenbank gespeichert werden.
+\cfigure{0.95}{chapters/chapter4_example/assets/Settings}{Settings - Seite}{settings}
+Zu guter Letzt noch die Startseite \ref{fig:home}, wo einfach auf die bereits erwähnten Seiten (und eine Testseite zum Debuggen) navigiert werden.
+\cfigure{0.95}{chapters/chapter4_example/assets/Home}{Startseite}{home}
+% 
+% ---------------------------------------------------------------------------------------------------------
+% 
+\section{Backend}
+Zuer Realisiertung dieses Beispiels war \textbf{einiges} notwendig. (Fast) das ganze UML-Diagramm ist in Grafik \ref{fig:backend} ersichtlich. Hierbei gibt es folgende Gruppen an Klassen:
+\begin{outline}
+    \1 Logik: Business-Logik der Anwendung:
+        \2 Haupt bzw. Mediator - Logik: hier ist das Design Pattern implementiert: Der Mediator kümmert sich um Eingang HTTP Event (RemoteController) → Verbindung zum UI (UIConnector) und auch handling von Discord (DiscordConnector). Den DiscordConnector gibt es hierbei in 2 Varianten: einen \enquote{echten} und eine Demo zum Testen ohne Discord. Die tatsächliche Kommunikation mit Frontend passiert dann im \textit{WSService} bzw. der Implementierung dieses Interfaces.
+        \2 weitere Logik wie Credential-Verwaltung / bereitstellen dieser über API, ...
+    \1 Model: Model- Klassen bzw. Records. (Die Verbindungen / Abhängigkeiten zu den einzelnen Logik-Klassen wurden hier zur besseren Übersichtlichkeit weggelassen)
+    \1 Konfiguration: einige Klassen, die zur Konfiguration der Spring Applikation / Websocket-Verbindung / MapStruct-Mapper notwendig sind
+\end{outline}
+\cfigure{0.95}{chapters/chapter4_example/assets/spring-application-annotated}{Backend UML-Diagramm}{backend}
+\newpage
+Auch ist ein Swagger-UI zum Testen implementiert:
+\cfigure{0.5}{chapters/chapter4_example/assets/Swagger}{Swagger -UI}{swagger}
+\newpage
+% 
+% ---------------------------------------------------------------------------------------------------------
+% 
+\section{Frontend}
+Im Frontend sieht der Aufbau wie folgt aus: 
+\paragraph{Logik}:
+auch im Frontend ist bewusst ein Mediator implementiert (oder mehr, wenn man wie in \hyperref[ref:VerwendungPraxis]{Verwendungsbeispiele aus der Praxis} erwähnt, die Backing-Beans auch als Mediator zählt). Zwischen Backing-Bean und Browser besteht eine \gls{SSE} Verbindung (SSEServlet), damit dieses (unter Zuhilfenahme von UpdateManager, ...) eine Live-Änderung im Browser bewirken kann, wenn über \gls{WS} ein Event hereinkommt. Zusätzlich noch ganze Credential Handling für Discord mit Microprofile Rest-Client, ...
+\cfigure{0.95}{chapters/chapter4_example/assets/jsf-ui-annotated_1}{Auszug aus Frontend UML-Diagramm - Teil 1: Logik}{frontend1}
+\filbreak
+\paragraph{Model / Andere}:
+dann hier noch die Modellklassen + ein paar andere. (auch hier wurde die Verbindungen zu den Modellklassen zur Übersichtlichkeit weggelassen). Hierbei noch auffäliig ist, dass es viele Model-Klassen \enquote{doppelt} gibt: einmal die tatsächlichen Model-Klassen des Frontends (meist Records) und 1-mal die generierten Models aus der API (POJO-Klassen).
+\cfigure{0.95}{chapters/chapter4_example/assets/jsf-ui-annotated_2}{Auszug aus Frontend UML-Diagramm - Teil 2: Model + Andere}{frontend2}
+% 
+% ---------------------------------------------------------------------------------------------------------
+% 
+\section{weitere Sub-Projekte}:
+Neben Backend und Frontend mussten noch weitere kleine \enquote{Sub-Projekte} implementiert werden. Siehe \hyperref[ref:resumee]{Resümee}

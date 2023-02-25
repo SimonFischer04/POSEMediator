@@ -1,0 +1,16 @@
+\chapter{Resümee}\label{ref:resumee}
+Beim Implementieren dieses Beispiels gab es \textbf{einige} Herausforderungen, die \textbf{VIEL} Zeit in Anspruch genommen haben!
+\begin{outline}
+    \1 JSF:
+        \2 Import von CSS (und JavaScript files) in JSF ...
+        \2 SSE in JSF: Servlet → View-Verbindung → update zurück zur Backing Bean (RemoteCommand)
+            \3 → ohne komische Render-Bugs: rendered attribute auf einem output-label lässt komplett woanders Elemente verschwinden, update Attribute ändert auch komplett andere Ids Div-Elemente → Animation wird abgebrochen, ...
+    \1 keine (+ mit Jarkarta EE / Wildfly kompatiblen) Java Websocket-Client / STOMP Libraries
+        \2 → Sub-Projekt: eigene Websocket-Library (Wrapper) für mehr Informationen siehe \url{https://github.com/SimonFischer04/POSEMediator/tree/main/StompLib}
+    \1 Discord Integration ...:
+        \2 → Sub-Projekt: Discord-Proxy: Proxy Applikation, die sich tatsächlich um die direkte Discord-Interaktion kümmert. Simple NodeJS / Express Anwendung mit REST-API, dass im Backend dann verwendet wird. : 
+        \2 \textit{Warum?} TLDR: keine vernünftigte Library für Java. Für mehr Informationen siehe: \url{https://github.com/SimonFischer04/POSEMediator/tree/main/DiscordProxy}
+    \1 (vorher Neuland - und daher auch großen Ziel dieses Beispiels gewesen: Spring Boot 3 \enquote{und Dinge drum herum})
+        \2 Java 17 (Records, ...)
+        \2 Tests mit \enquote{alten} (noch nicht gelernten) Java Features: verschiedenste Queues und Dequeues → migriert zu Java 9 Flow-API, ThreadPools / Futures / CompleteableFutures, ...
+\end{outline}

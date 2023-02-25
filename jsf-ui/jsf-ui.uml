@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/simif/Dev/Projects/posemediator/jsf-ui</OriginalElement>
+  <nodes>
+    <node x="817.6875000000001" y="-350.68832414445546">eu.fischerserver.gitlab.pm.jsfui.bean.OverlayBackingBean</node>
+    <node x="1294.4995" y="460.23142384106006">eu.fischerserver.gitlab.pm.jsfui.bean.LoaderBean</node>
+    <node x="816.6875000000001" y="530.4710432257855">eu.fischerserver.gitlab.pm.jsfui.api.RemoteControllerApi</node>
+    <node x="379.75455298013276" y="460.23142384106006">eu.fischerserver.gitlab.pm.jsfui.main.include.update.PMUpdateServer</node>
+    <node x="799.1875000000002" y="256.7730905077266">eu.fischerserver.gitlab.pm.jsfui.main.MediatorImpl</node>
+    <node x="282.25455298013276" y="1670.0073891625618">eu.fischerserver.gitlab.pm.jsfui.model.DiscordRpcConfig</node>
+    <node x="1215.9995" y="-91.0">eu.fischerserver.gitlab.pm.jsfui.service.WSClient</node>
+    <node x="283.75455298013276" y="1108.00985221675">eu.fischerserver.gitlab.pm.jsfui.model.Credential</node>
+    <node x="335.75455298013276" y="282.7730905077266">eu.fischerserver.gitlab.pm.jsfui.main.include.update.PMUpdateManager</node>
+    <node x="710.3770264900662" y="1117.7323972800068">eu.fischerserver.gitlab.pm.jsfui.api.model.CredentialSaveRequest</node>
+    <node x="821.7227315270936" y="773.1017202528963">eu.fischerserver.gitlab.pm.jsfui.bean.SettingsBackingBean</node>
+    <node x="1136.5" y="1933.0295566502464">eu.fischerserver.gitlab.pm.jsfui.api.ApiException</node>
+    <node x="276.25455298013276" y="1946.5295566502466">eu.fischerserver.gitlab.pm.jsfui.model.DiscordRpcConfig.DiscordRpcConfigBuilder</node>
+    <node x="1284.4995" y="1108.00985221675">eu.fischerserver.gitlab.pm.jsfui.model.PMData</node>
+    <node x="1136.5" y="2147.5295566502464">eu.fischerserver.gitlab.pm.jsfui.PMApplication</node>
+    <node x="799.1875000000001" y="-16.0">eu.fischerserver.gitlab.pm.jsfui.main.Mediator</node>
+    <node x="282.25455298013276" y="-16.0">eu.fischerserver.gitlab.pm.jsfui.servlet.SSEServlet</node>
+    <node x="327.75455298013276" y="561.6897571743935">eu.fischerserver.gitlab.pm.jsfui.main.include.update.PMUpdateClient</node>
+    <node x="282.25455298013276" y="812.9684614329404">eu.fischerserver.gitlab.pm.jsfui.api.CredentialControllerApi</node>
+    <node x="282.25455298013276" y="1275.3201970443351">eu.fischerserver.gitlab.pm.jsfui.api.model.Credential</node>
+    <node x="1221.4995" y="1275.3201970443351">eu.fischerserver.gitlab.pm.jsfui.api.model.PMData</node>
+    <node x="728.8770264900662" y="1644.5295566502464">eu.fischerserver.gitlab.pm.jsfui.api.model.DiscordRpcConfig</node>
+    <node x="1136.5" y="1644.5295566502464">eu.fischerserver.gitlab.pm.jsfui.util.SerializationUtil</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="eu.fischerserver.gitlab.pm.jsfui.main.MediatorImpl" target="eu.fischerserver.gitlab.pm.jsfui.service.WSClient" relationship="TO_ONE">
+      <point x="123.50049999999987" y="49.22690949227342" />
+      <point x="1380.0" y="399.5" />
+      <point x="5.000000001018634E-4" y="130.000333333333" />
+    </edge>
+    <edge source="eu.fischerserver.gitlab.pm.jsfui.main.MediatorImpl" target="eu.fischerserver.gitlab.pm.jsfui.api.RemoteControllerApi" relationship="TO_ONE">
+      <point x="-123.49950000000024" y="-9.050772655427863E-5" />
+      <point x="922.6875000000002" y="350.273" />
+      <point x="922.6875000000002" y="561.0151302781456" />
+      <point x="-0.8488938807798831" y="-24.45591294763983" />
+    </edge>
+    <edge source="eu.fischerserver.gitlab.pm.jsfui.main.include.update.PMUpdateManager" target="eu.fischerserver.gitlab.pm.jsfui.main.include.update.PMUpdateServer" relationship="TO_ONE">
+      <point x="0.0" y="67.5" />
+      <point x="0.0" y="-29.5" />
+    </edge>
+    <edge source="eu.fischerserver.gitlab.pm.jsfui.bean.LoaderBean" target="eu.fischerserver.gitlab.pm.jsfui.service.WSClient" relationship="TO_ONE">
+      <point x="-85.49952649006627" y="-1.3943170313268638E-4" />
+      <point x="1379.9995" y="502.73128440935693" />
+      <point x="1379.9995" y="433.65035761589394" />
+      <point x="1380.0" y="433.65035761589394" />
+      <point x="5.000000001018634E-4" y="130.000333333333" />
+    </edge>
+    <edge source="eu.fischerserver.gitlab.pm.jsfui.main.MediatorImpl" target="eu.fischerserver.gitlab.pm.jsfui.main.Mediator" relationship="REALIZATION">
+      <point x="15.00049999999976" y="-93.5" />
+      <point x="15.000499999999874" y="55.0" />
+    </edge>
+    <edge source="eu.fischerserver.gitlab.pm.jsfui.service.WSClient" target="eu.fischerserver.gitlab.pm.jsfui.main.Mediator" relationship="TO_ONE">
+      <point x="-163.9994999999999" y="3.3333333303176005E-4" />
+      <point x="1131.0935" y="39.00033333333303" />
+      <point x="1131.0935" y="39.0" />
+      <point x="-123.49950000000013" y="0.0" />
+    </edge>
+    <edge source="eu.fischerserver.gitlab.pm.jsfui.bean.SettingsBackingBean" target="eu.fischerserver.gitlab.pm.jsfui.api.CredentialControllerApi" relationship="TO_ONE">
+      <point x="-161.4901384236424" y="-11.263150794767284" />
+      <point x="703.1519634172034" y="867.838569458129" />
+      <point x="703.1519634172034" y="867.6135169151474" />
+      <point x="176.14201552319605" y="-0.35494451779300107" />
+    </edge>
+    <edge source="eu.fischerserver.gitlab.pm.jsfui.main.MediatorImpl" target="eu.fischerserver.gitlab.pm.jsfui.main.include.update.PMUpdateManager" relationship="TO_ONE">
+      <point x="-124.42659899336468" y="7.439354525386079" />
+      <point x="603.6132856423972" y="357.71244503311266" />
+      <point x="132.8587326622644" y="2.8154859161145396" />
+    </edge>
+    <edge source="eu.fischerserver.gitlab.pm.jsfui.bean.SettingsBackingBean" target="eu.fischerserver.gitlab.pm.jsfui.api.RemoteControllerApi" relationship="TO_ONE">
+      <point x="1.4933334975397656" y="-104.31599808540773" />
+      <point x="986.2160650246334" y="599.9201456953642" />
+      <point x="924.5713847152474" y="599.9201456953642" />
+      <point x="1.8838847152472908" y="52.70088260203079" />
+    </edge>
+    <edge source="eu.fischerserver.gitlab.pm.jsfui.servlet.SSEServlet" target="eu.fischerserver.gitlab.pm.jsfui.main.Mediator" relationship="TO_ONE">
+      <point x="188.50044701986724" y="0.0" />
+      <point x="-123.49950000000013" y="0.0" />
+    </edge>
+    <edge source="eu.fischerserver.gitlab.pm.jsfui.servlet.SSEServlet" target="eu.fischerserver.gitlab.pm.jsfui.main.include.update.PMUpdateManager" relationship="TO_ONE">
+      <point x="4.4701986723794107E-4" y="55.0" />
+      <point x="4.4701986723794107E-4" y="-67.50009050772655" />
+    </edge>
+    <edge source="eu.fischerserver.gitlab.pm.jsfui.model.DiscordRpcConfig.DiscordRpcConfigBuilder" target="eu.fischerserver.gitlab.pm.jsfui.model.DiscordRpcConfig" relationship="INNER_CLASS">
+      <point x="0.0" y="-130.0" />
+      <point x="476.75455298013276" y="1929.336164078557" />
+      <point x="456.92795199491115" y="1929.336164078557" />
+      <point x="456.92795199491115" y="1918.7516385019414" />
+      <point x="282.25455298013276" y="1918.7516385019414" />
+      <point x="-197.5" y="0.0" />
+    </edge>
+    <edge source="eu.fischerserver.gitlab.pm.jsfui.bean.OverlayBackingBean" target="eu.fischerserver.gitlab.pm.jsfui.main.Mediator" relationship="TO_ONE">
+      <point x="-104.99950000000013" y="3.2414445547601645E-4" />
+      <point x="922.6875000000001" y="-269.688" />
+      <point x="922.6875000000001" y="26.958675496688784" />
+      <point x="993.3791655629141" y="26.958675496688784" />
+      <point x="993.3791655629141" y="39.0" />
+      <point x="-123.49950000000013" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.37186404293381076" showDependencies="true" x="1001.3750298609511" y="1151.8666871921116" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
