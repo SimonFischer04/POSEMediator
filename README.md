@@ -54,3 +54,5 @@ School Task about Design-Patterns (Mediator) with presentation, handout and exam
 |---------|----------|
 | uml     | discord  |
 
+## how to run:
+[HowTo](./HowTo.md)
